@@ -1,2168 +1,1387 @@
-/* =====================================================
-DISCORD MARKETPLACE
-PREMIUM DARK UI
-===================================================== */
+<!DOCTYPE html>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+<html lang="en">
 
-/* =====================================================
-RESET
-===================================================== */
+<head>
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  }
-
-html {
-scroll-behavior: smooth;
-}
-
-body {
-font-family: 'Inter', sans-serif;
-
-```
-background:
-    radial-gradient(
-        circle at 10% 10%,
-        rgba(88, 101, 242, 0.12),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 90% 30%,
-        rgba(139, 92, 246, 0.10),
-        transparent 30%
-    ),
-
-    #08090d;
-
-color: #ffffff;
-
-min-height: 100vh;
-
-overflow-x: hidden;
-```
-
-}
-
-a {
-text-decoration: none;
-
-```
-color: inherit;
-```
-
-}
-
-button {
-font-family: inherit;
-}
-
-/* =====================================================
-NAVBAR
-===================================================== */
-
-.navbar {
-
-```
-position: sticky;
-
-top: 0;
-
-z-index: 1000;
-
-height: 75px;
-
-display: flex;
-
-align-items: center;
-
-justify-content: space-between;
-
-padding: 0 7%;
-
-background:
-    rgba(8, 9, 13, 0.78);
-
-backdrop-filter:
-    blur(18px);
-
--webkit-backdrop-filter:
-    blur(18px);
-
-border-bottom:
-    1px solid rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
-```
-
-}
-
-.logo {
-
-```
-font-size: 20px;
-
-font-weight: 800;
-
-letter-spacing: -0.5px;
-```
-
-}
-
-.logo span {
-
-```
-color: #7289ff;
-```
-
-}
-
-.navbar nav {
-
-```
-display: flex;
-
-gap: 35px;
 ```
+<meta charset="UTF-8">
 
-}
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-.navbar nav a {
+<meta
+    name="description"
+    content="Discord Marketplace - Premium Discord Bots, Hosting and Services."
+>
 
-```
-position: relative;
-
-color: #9295a1;
-
-font-size: 14px;
-
-font-weight: 600;
-
-transition:
-    color 0.3s ease;
-```
-
-}
+<title>Discord Marketplace</title>
 
-.navbar nav a:hover {
-
-```
-color: #ffffff;
-```
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
 
-}
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+>
 
-.navbar nav a::after {
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
+<link
+    rel="stylesheet"
+    href="style.css"
+>
 ```
-content: '';
 
-position: absolute;
+</head>
 
-left: 50%;
+<body>
 
-bottom: -8px;
+<!-- =====================================================
+     BACKGROUND EFFECTS
+===================================================== -->
 
-width: 0;
+<div class="background-glow glow-one"></div>
 
-height: 2px;
+<div class="background-glow glow-two"></div>
 
-background:
-    linear-gradient(
-        90deg,
-        #5865f2,
-        #8b5cf6
-    );
+<div class="background-grid"></div>
 
-transform:
-    translateX(-50%);
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
 
-transition:
-    width 0.3s ease;
-```
-
-}
-
-.navbar nav a:hover::after {
-
-```
-width: 100%;
-```
-
-}
+<header class="navbar">
 
-/* CART BUTTON */
-
-.cart-button {
-
 ```
-display: flex;
-
-align-items: center;
+<a
+    href="#home"
+    class="brand"
+>
 
-gap: 8px;
+    <div class="brand-icon">
+        D
+    </div>
 
-padding: 10px 16px;
+    <div class="brand-text">
 
-border: 1px solid
-    rgba(
-        114,
-        137,
-        255,
-        0.25
-    );
+        <strong>
+            Discord
+        </strong>
 
-border-radius: 9px;
+        <span>
+            Marketplace
+        </span>
 
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.10
-    );
+    </div>
 
-color: #ffffff;
+</a>
 
-cursor: pointer;
 
-transition:
-    all 0.3s ease;
-```
-
-}
+<nav class="main-nav">
 
-.cart-button:hover {
+    <a
+        href="#home"
+        class="active"
+    >
+        Home
+    </a>
 
-```
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.25
-    );
-
-box-shadow:
-    0 0 25px
-    rgba(
-        88,
-        101,
-        242,
-        0.25
-    );
-
-transform:
-    translateY(-2px);
-```
+    <a href="#bots">
+        Bots
+    </a>
 
-}
+    <a href="#hosting">
+        Hosting
+    </a>
 
-#cart-count {
+    <a href="#support">
+        Support
+    </a>
 
-```
-display: flex;
+</nav>
 
-align-items: center;
 
-justify-content: center;
+<div class="nav-actions">
 
-width: 20px;
+    <button
+        class="nav-discord"
+    >
+        Join Discord
+    </button>
 
-height: 20px;
 
-border-radius: 50%;
+    <button
+        class="cart-button"
+        onclick="openCart()"
+    >
 
-background: #5865f2;
+        <span>
+            🛒
+        </span>
 
-font-size: 11px;
+        Cart
 
-font-weight: 700;
-```
+        <b id="cart-count">
+            0
+        </b>
 
-}
+    </button>
 
-/* =====================================================
-HERO
-===================================================== */
+</div>
 
-.hero {
 
+<button
+    class="mobile-menu"
+    onclick="toggleMobileMenu()"
+>
+    ☰
+</button>
 ```
-position: relative;
-
-min-height: 680px;
-
-display: grid;
-
-grid-template-columns:
-    1.05fr
-    0.95fr;
-
-align-items: center;
-
-gap: 60px;
 
-padding:
-    80px 8%;
+</header>
 
-overflow: hidden;
-```
-
-}
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
 
-.hero::before {
+<div
+    id="mobile-nav"
+    class="mobile-nav"
+>
 
 ```
-content: '';
-
-position: absolute;
-
-width: 600px;
-
-height: 600px;
-
-left: -250px;
-
-top: 50px;
-
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.15
-    );
-
-filter:
-    blur(120px);
-
-border-radius: 50%;
+<a href="#home">
+    Home
+</a>
 
-pointer-events: none;
-```
+<a href="#bots">
+    Bots
+</a>
 
-}
+<a href="#hosting">
+    Hosting
+</a>
 
-.hero-content {
+<a href="#support">
+    Support
+</a>
 
+<button>
+    Join Discord
+</button>
 ```
-position: relative;
 
-z-index: 2;
+</div>
 
-animation:
-    fadeUp 0.8s ease forwards;
-```
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-}
+<main id="home">
 
-.hero-badge {
+<section class="hero">
 
 ```
-display: inline-flex;
-
-padding:
-    9px 14px;
-
-margin-bottom: 25px;
-
-border:
-    1px solid
-    rgba(
-        114,
-        137,
-        255,
-        0.25
-    );
+<div class="hero-content">
 
-border-radius: 100px;
 
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.08
-    );
+    <div class="status-badge">
 
-color: #9da8ff;
+        <span class="status-dot"></span>
 
-font-size: 10px;
+        PREMIUM DISCORD SERVICES
 
-font-weight: 700;
+    </div>
 
-letter-spacing: 1px;
-```
-
-}
 
-.hero h1 {
+    <h1>
 
-```
-max-width: 700px;
+        Build Your
+        <span>
+            Perfect Discord
+        </span>
+        Experience.
 
-font-size:
-    clamp(
-        45px,
-        6vw,
-        78px
-    );
+    </h1>
 
-line-height: 1.05;
 
-letter-spacing:
-    -4px;
-
-margin-bottom: 25px;
-```
+    <p>
 
-}
+        Premium Discord bots, powerful hosting
+        and professional services designed to
+        take your community to the next level.
 
-.hero h1 span {
+    </p>
 
-```
-display: block;
-
-background:
-    linear-gradient(
-        90deg,
-        #7289ff,
-        #9b6cff,
-        #7289ff
-    );
-
-background-size:
-    200% auto;
-
--webkit-background-clip:
-    text;
-
--webkit-text-fill-color:
-    transparent;
-
-animation:
-    gradientMove 4s
-    linear infinite;
-```
 
-}
+    <div class="hero-buttons">
 
-.hero p {
+        <a
+            href="#bots"
+            class="button button-primary"
+        >
 
-```
-max-width: 570px;
+            Explore Marketplace
 
-color: #9295a1;
+            <span>
+                →
+            </span>
 
-font-size: 16px;
+        </a>
 
-line-height: 1.8;
 
-margin-bottom: 35px;
-```
+        <a
+            href="#hosting"
+            class="button button-secondary"
+        >
 
-}
+            View Hosting
 
-/* HERO BUTTONS */
+        </a>
 
-.hero-buttons {
+    </div>
 
-```
-display: flex;
 
-gap: 15px;
-```
+    <div class="hero-trust">
 
-}
+        <div class="trust-avatars">
 
-.primary-button,
-.secondary-button {
+            <span>
+                D
+            </span>
 
-```
-padding:
-    14px 25px;
+            <span>
+                B
+            </span>
 
-border-radius: 9px;
+            <span>
+                H
+            </span>
 
-font-size: 14px;
+            <span>
+                +
+            </span>
 
-font-weight: 700;
+        </div>
 
-transition:
-    all 0.3s ease;
-```
 
-}
+        <div>
 
-.primary-button {
+            <strong>
+                Trusted by Discord Communities
+            </strong>
 
-```
-background:
-    linear-gradient(
-        135deg,
-        #5865f2,
-        #7657f5
-    );
-
-box-shadow:
-    0 10px 35px
-    rgba(
-        88,
-        101,
-        242,
-        0.30
-    );
-```
+            <small>
+                Premium products. Professional service.
+            </small>
 
-}
+        </div>
 
-.primary-button:hover {
+    </div>
 
-```
-transform:
-    translateY(-3px);
-
-box-shadow:
-    0 15px 45px
-    rgba(
-        88,
-        101,
-        242,
-        0.45
-    );
-```
 
-}
+</div>
 
-.secondary-button {
 
-```
-border:
-    1px solid
-    #282b37;
-
-background:
-    rgba(
-        255,
-        255,
-        255,
-        0.02
-    );
-
-color: #ffffff;
-```
 
-}
+<!-- HERO PRODUCT PREVIEW -->
 
-.secondary-button:hover {
+<div class="hero-preview">
 
-```
-border-color:
-    #5865f2;
-
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.08
-    );
-
-transform:
-    translateY(-3px);
-```
 
-}
+    <div class="preview-glow"></div>
 
-/* =====================================================
-HERO VISUAL
-===================================================== */
 
-.hero-visual {
+    <div class="dashboard-card">
 
-```
-position: relative;
 
-min-height: 450px;
+        <div class="dashboard-top">
 
-display: flex;
+            <div class="window-controls">
 
-align-items: center;
+                <span></span>
+                <span></span>
+                <span></span>
 
-justify-content: center;
-```
+            </div>
 
-}
 
-.discord-window {
+            <span class="dashboard-label">
 
-```
-width: 430px;
-
-border:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.08
-    );
-
-border-radius: 18px;
-
-background:
-    rgba(
-        17,
-        18,
-        24,
-        0.85
-    );
-
-box-shadow:
-    0 30px 100px
-    rgba(
-        0,
-        0,
-        0,
-        0.45
-    ),
-
-    0 0 80px
-    rgba(
-        88,
-        101,
-        242,
-        0.12
-    );
-
-overflow: hidden;
-
-transform:
-    perspective(1000px)
-    rotateY(-5deg)
-    rotateX(3deg);
-
-animation:
-    floating 5s
-    ease-in-out
-    infinite;
-```
+                MARKETPLACE
 
-}
+            </span>
 
-.window-header {
+        </div>
 
-```
-height: 42px;
-
-display: flex;
-
-align-items: center;
-
-gap: 7px;
-
-padding: 0 15px;
-
-background:
-    rgba(
-        255,
-        255,
-        255,
-        0.025
-    );
-
-border-bottom:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.05
-    );
-```
 
-}
 
-.window-header span {
+        <div class="dashboard-body">
 
-```
-width: 9px;
 
-height: 9px;
+            <div class="dashboard-sidebar">
 
-border-radius: 50%;
+                <div class="side-logo">
+                    D
+                </div>
 
-background:
-    #3c3e48;
-```
+                <span class="side-line active"></span>
 
-}
+                <span class="side-line"></span>
 
-.window-content {
+                <span class="side-line"></span>
 
-```
-display: flex;
+                <span class="side-line"></span>
 
-align-items: center;
+            </div>
 
-gap: 15px;
 
-padding: 35px 30px;
-```
 
-}
+            <div class="dashboard-main">
 
-.server-icon {
 
-```
-width: 65px;
+                <div class="dashboard-heading">
 
-height: 65px;
+                    <div>
 
-display: flex;
+                        <small>
+                            WELCOME BACK
+                        </small>
 
-align-items: center;
+                        <h3>
+                            Discord Marketplace
+                        </h3>
 
-justify-content: center;
+                    </div>
 
-border-radius: 18px;
 
-background:
-    linear-gradient(
-        135deg,
-        #5865f2,
-        #8b5cf6
-    );
+                    <div class="mini-avatar">
+                        D
+                    </div>
 
-font-size: 25px;
+                </div>
 
-font-weight: 800;
 
-box-shadow:
-    0 0 30px
-    rgba(
-        88,
-        101,
-        242,
-        0.35
-    );
-```
 
-}
+                <div class="dashboard-stats">
 
-.window-content strong {
 
-```
-font-size: 17px;
-```
+                    <div class="mini-stat">
 
-}
+                        <span>
+                            🤖
+                        </span>
 
-.window-content p {
+                        <div>
 
-```
-margin-top: 7px;
+                            <strong>
+                                20+
+                            </strong>
 
-color: #777b89;
+                            <small>
+                                Bots
+                            </small>
 
-font-size: 12px;
-```
+                        </div>
 
-}
+                    </div>
 
-.window-stats {
 
-```
-display: grid;
-
-grid-template-columns:
-    repeat(3, 1fr);
-
-padding:
-    20px 30px;
-
-border-top:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.05
-    );
-```
+                    <div class="mini-stat">
 
-}
+                        <span>
+                            ⚡
+                        </span>
 
-.window-stats div {
+                        <div>
 
-```
-text-align: center;
-```
+                            <strong>
+                                99.9%
+                            </strong>
 
-}
+                            <small>
+                                Uptime
+                            </small>
 
-.window-stats strong {
+                        </div>
 
-```
-display: block;
+                    </div>
 
-color: #ffffff;
 
-font-size: 18px;
-```
+                </div>
 
-}
 
-.window-stats small {
 
-```
-color: #6f7280;
+                <div class="dashboard-product">
 
-font-size: 10px;
-```
 
-}
+                    <div class="product-icon">
+                        🛡️
+                    </div>
 
-/* FLOATING CARDS */
 
-.floating-card {
+                    <div class="product-info">
 
-```
-position: absolute;
-
-display: flex;
-
-align-items: center;
-
-gap: 12px;
-
-padding:
-    13px 17px;
-
-border:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.08
-    );
-
-border-radius: 12px;
-
-background:
-    rgba(
-        18,
-        19,
-        26,
-        0.85
-    );
-
-backdrop-filter:
-    blur(15px);
-
-box-shadow:
-    0 20px 50px
-    rgba(
-        0,
-        0,
-        0,
-        0.3
-    );
-
-z-index: 3;
-```
+                        <small>
+                            FEATURED PRODUCT
+                        </small>
 
-}
+                        <strong>
+                            Security Bot Pro
+                        </strong>
 
-.floating-card strong {
+                        <span>
+                            Advanced Discord Protection
+                        </span>
 
-```
-display: block;
+                    </div>
 
-font-size: 12px;
-```
 
-}
+                    <div class="product-price">
 
-.floating-card small {
+                        <strong>
+                            €9.99
+                        </strong>
 
-```
-display: block;
+                        <button>
+                            +
+                        </button>
 
-margin-top: 3px;
+                    </div>
 
-color: #707381;
 
-font-size: 10px;
-```
+                </div>
 
-}
 
-.card-one {
+            </div>
 
-```
-top: 40px;
+        </div>
 
-left: 0;
+    </div>
 
-animation:
-    floating 4s
-    ease-in-out
-    infinite;
-```
 
-}
+    <div class="floating-product floating-one">
 
-.card-two {
+        <span>
+            🛡️
+        </span>
 
-```
-right: 0;
+        <div>
 
-bottom: 40px;
+            <strong>
+                Security Bot
+            </strong>
 
-animation:
-    floating 4s
-    ease-in-out
-    1s infinite;
-```
+            <small>
+                Added to Marketplace
+            </small>
 
-}
+        </div>
 
-/* =====================================================
-STATS
-===================================================== */
+        <b>
+            ✓
+        </b>
 
-.stats {
+    </div>
 
-```
-display: grid;
-
-grid-template-columns:
-    repeat(4, 1fr);
-
-max-width: 1100px;
-
-margin:
-    0 auto;
-
-padding:
-    25px;
-
-border:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
-
-border-radius: 15px;
-
-background:
-    rgba(
-        255,
-        255,
-        255,
-        0.02
-    );
-```
 
-}
+    <div class="floating-product floating-two">
 
-.stats div {
+        <span>
+            ⚡
+        </span>
 
-```
-text-align: center;
-
-border-right:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
-```
+        <div>
 
-}
+            <strong>
+                99.9% Uptime
+            </strong>
 
-.stats div:last-child {
+            <small>
+                Hosting Online
+            </small>
 
-```
-border-right: none;
-```
+        </div>
 
-}
+    </div>
 
-.stats strong {
 
+</div>
 ```
-display: block;
 
-color: #ffffff;
+</section>
 
-font-size: 24px;
-```
+<!-- =====================================================
+     TRUST BAR
+===================================================== -->
 
-}
+<section class="trust-bar">
 
-.stats span {
-
 ```
-display: block;
-
-margin-top: 6px;
+<div class="trust-item">
 
-color: #707381;
+    <span>
+        ⚡
+    </span>
 
-font-size: 11px;
-```
+    <div>
 
-}
+        <strong>
+            Instant Delivery
+        </strong>
 
-/* =====================================================
-PRODUCTS
-===================================================== */
+        <small>
+            Fast product access
+        </small>
 
-.products-section {
+    </div>
 
-```
-max-width: 1200px;
+</div>
 
-margin:
-    100px auto;
 
-padding:
-    0 25px;
-```
+<div class="trust-item">
 
-}
+    <span>
+        🛡️
+    </span>
 
-.section-header {
+    <div>
 
-```
-display: flex;
+        <strong>
+            Secure Services
+        </strong>
 
-align-items: flex-end;
+        <small>
+            Built with reliability
+        </small>
 
-justify-content: space-between;
+    </div>
 
-margin-bottom: 35px;
-```
+</div>
 
-}
 
-.section-header span {
+<div class="trust-item">
 
-```
-color: #7289ff;
+    <span>
+        🎧
+    </span>
 
-font-size: 10px;
+    <div>
 
-font-weight: 700;
+        <strong>
+            24/7 Support
+        </strong>
 
-letter-spacing: 2px;
-```
+        <small>
+            We're here to help
+        </small>
 
-}
+    </div>
 
-.section-header h2 {
+</div>
 
-```
-margin-top: 8px;
 
-font-size: 32px;
+<div class="trust-item">
 
-letter-spacing: -1px;
-```
+    <span>
+        ⭐
+    </span>
 
-}
+    <div>
 
-.section-header a {
+        <strong>
+            Premium Quality
+        </strong>
 
-```
-color: #8c91a0;
+        <small>
+            Professional products
+        </small>
 
-font-size: 12px;
+    </div>
 
-transition:
-    color 0.3s ease;
+</div>
 ```
 
-}
-
-.section-header a:hover {
-
-```
-color: #7289ff;
-```
+</section>
 
-}
+<!-- =====================================================
+     BOTS SECTION
+===================================================== -->
 
-.product-grid {
+<section
+    id="bots"
+    class="section"
+>
 
 ```
-display: grid;
+<div class="section-heading">
 
-grid-template-columns:
-    repeat(3, 1fr);
+    <div>
 
-gap: 20px;
-```
+        <span class="section-label">
+            DISCORD BOTS
+        </span>
 
-}
+        <h2>
+            Everything Your Server Needs.
+        </h2>
 
-.product-card {
+        <p>
+            Powerful and reliable Discord bots
+            for every type of community.
+        </p>
 
-```
-position: relative;
-
-padding: 28px;
-
-border:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
-
-border-radius: 15px;
-
-background:
-    linear-gradient(
-        145deg,
-        rgba(
-            255,
-            255,
-            255,
-            0.035
-        ),
-        rgba(
-            255,
-            255,
-            255,
-            0.01
-        )
-    );
-
-transition:
-    transform 0.4s ease,
-    border-color 0.4s ease,
-    box-shadow 0.4s ease;
-
-overflow: hidden;
-```
+    </div>
 
-}
 
-.product-card::before {
+    <a
+        href="#bot-marketplace"
+        class="view-all"
+    >
 
-```
-content: '';
+        View All Bots
+        →
 
-position: absolute;
+    </a>
 
-width: 200px;
+</div>
 
-height: 200px;
 
-top: -100px;
 
-right: -100px;
+<div class="product-grid">
 
-border-radius: 50%;
 
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.15
-    );
+    <!-- BOT CARD -->
 
-filter:
-    blur(50px);
+    <article class="product-card">
 
-opacity: 0;
 
-transition:
-    opacity 0.4s ease;
-```
+        <div class="card-top">
 
-}
+            <div class="product-logo security">
+                🛡️
+            </div>
 
-.product-card:hover {
+            <span class="product-tag">
+                SECURITY
+            </span>
 
-```
-transform:
-    translateY(-8px);
-
-border-color:
-    rgba(
-        88,
-        101,
-        242,
-        0.45
-    );
-
-box-shadow:
-    0 20px 60px
-    rgba(
-        0,
-        0,
-        0,
-        0.35
-    );
-```
+        </div>
 
-}
 
-.product-card:hover::before {
+        <h3>
+            Security Bot
+        </h3>
 
-```
-opacity: 1;
-```
 
-}
+        <p>
+            Advanced protection against raids,
+            spam and server attacks.
+        </p>
 
-.product-card.featured {
 
-```
-border-color:
-    rgba(
-        88,
-        101,
-        242,
-        0.35
-    );
-```
+        <div class="features">
 
-}
+            <span>
+                ✓ Anti-Raid
+            </span>
 
-.product-icon {
+            <span>
+                ✓ Anti-Nuke
+            </span>
 
-```
-width: 55px;
+            <span>
+                ✓ AutoMod
+            </span>
 
-height: 55px;
+        </div>
 
-display: flex;
 
-align-items: center;
+        <div class="card-bottom">
 
-justify-content: center;
+            <div>
 
-margin-bottom: 22px;
+                <small>
+                    Starting from
+                </small>
 
-border-radius: 14px;
+                <strong>
+                    €4.99
+                </strong>
 
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.12
-    );
+            </div>
 
-font-size: 24px;
-```
 
-}
+            <button
+                onclick="addToCart('Security Bot', 4.99)"
+                class="add-button"
+            >
 
-.product-type {
+                Add
 
-```
-color: #7289ff;
+                <span>
+                    +
+                </span>
 
-font-size: 9px;
+            </button>
 
-font-weight: 700;
+        </div>
 
-letter-spacing: 2px;
-```
 
-}
+    </article>
 
-.product-card h3 {
 
-```
-margin:
-    8px 0;
 
-font-size: 19px;
-```
+    <!-- BOT CARD -->
 
-}
+    <article class="product-card featured-card">
 
-.product-card p {
 
-```
-min-height: 45px;
+        <div class="popular-label">
+            MOST POPULAR
+        </div>
 
-color: #777b89;
 
-font-size: 12px;
+        <div class="card-top">
 
-line-height: 1.7;
-```
+            <div class="product-logo support">
+                🎫
+            </div>
 
-}
+            <span class="product-tag">
+                SUPPORT
+            </span>
 
-.product-bottom {
+        </div>
 
-```
-display: flex;
 
-align-items: center;
+        <h3>
+            Ticket Master
+        </h3>
 
-justify-content: space-between;
 
-margin-top: 25px;
+        <p>
+            Create professional support tickets
+            and manage your community easily.
+        </p>
 
-padding-top: 20px;
 
-border-top:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
-```
+        <div class="features">
 
-}
+            <span>
+                ✓ Ticket System
+            </span>
 
-.product-bottom strong {
+            <span>
+                ✓ Transcripts
+            </span>
 
-```
-font-size: 15px;
-```
+            <span>
+                ✓ Staff Panel
+            </span>
 
-}
+        </div>
 
-.product-bottom button {
 
-```
-padding:
-    9px 14px;
+        <div class="card-bottom">
 
-border: none;
+            <div>
 
-border-radius: 7px;
+                <small>
+                    Starting from
+                </small>
 
-background:
-    #5865f2;
+                <strong>
+                    €6.99
+                </strong>
 
-color: white;
+            </div>
 
-font-size: 11px;
 
-font-weight: 700;
+            <button
+                onclick="addToCart('Ticket Master', 6.99)"
+                class="add-button"
+            >
 
-cursor: pointer;
+                Add
 
-transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-```
+                <span>
+                    +
+                </span>
 
-}
+            </button>
 
-.product-bottom button:hover {
+        </div>
 
-```
-transform:
-    translateY(-2px);
-
-box-shadow:
-    0 8px 25px
-    rgba(
-        88,
-        101,
-        242,
-        0.35
-    );
-```
 
-}
+    </article>
 
-.popular {
 
-```
-position: absolute;
 
-top: 15px;
+    <!-- BOT CARD -->
 
-right: 15px;
+    <article class="product-card">
 
-padding:
-    5px 8px;
 
-border-radius: 5px;
+        <div class="card-top">
 
-background:
-    rgba(
-        88,
-        101,
-        242,
-        0.15
-    );
+            <div class="product-logo moderation">
+                🔨
+            </div>
 
-color: #8c99ff;
+            <span class="product-tag">
+                MODERATION
+            </span>
 
-font-size: 8px;
+        </div>
 
-font-weight: 700;
-```
 
-}
+        <h3>
+            AutoMod Pro
+        </h3>
 
-/* =====================================================
-HOSTING
-===================================================== */
 
-.hosting-preview {
+        <p>
+            Powerful automated moderation
+            and server management tools.
+        </p>
 
-```
-padding:
-    100px 8%;
-
-background:
-    rgba(
-        255,
-        255,
-        255,
-        0.015
-    );
-
-border-top:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.04
-    );
-
-border-bottom:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.04
-    );
-```
 
-}
+        <div class="features">
 
-.section-header.center {
+            <span>
+                ✓ AutoMod
+            </span>
 
-```
-display: block;
+            <span>
+                ✓ Warning System
+            </span>
 
-text-align: center;
-```
+            <span>
+                ✓ Logs
+            </span>
 
-}
+        </div>
 
-.section-header.center p {
 
-```
-max-width: 500px;
+        <div class="card-bottom">
 
-margin:
-    15px auto 0;
+            <div>
 
-color: #777b89;
+                <small>
+                    Starting from
+                </small>
 
-font-size: 13px;
+                <strong>
+                    €7.99
+                </strong>
 
-line-height: 1.7;
-```
+            </div>
 
-}
 
-.hosting-grid {
+            <button
+                onclick="addToCart('AutoMod Pro', 7.99)"
+                class="add-button"
+            >
 
-```
-max-width: 1100px;
+                Add
 
-margin:
-    45px auto 0;
+                <span>
+                    +
+                </span>
 
-display: grid;
+            </button>
 
-grid-template-columns:
-    repeat(3, 1fr);
+        </div>
 
-gap: 20px;
-```
 
-}
+    </article>
 
-.hosting-card {
 
+</div>
 ```
-position: relative;
 
-padding: 35px;
+</section>
 
-border:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.06
-    );
+<!-- =====================================================
+     HOSTING SECTION
+===================================================== -->
 
-border-radius: 15px;
+<section
+    id="hosting"
+    class="hosting-section"
+>
 
-background:
-    #101117;
-
-transition:
-    all 0.4s ease;
 ```
+<div class="section-heading center">
 
-}
+    <span class="section-label">
+        DISCORD HOSTING
+    </span>
 
-.hosting-card:hover {
+    <h2>
+        Fast. Reliable. Always Online.
+    </h2>
 
-```
-transform:
-    translateY(-8px);
-
-border-color:
-    #5865f2;
-
-box-shadow:
-    0 20px 60px
-    rgba(
-        88,
-        101,
-        242,
-        0.12
-    );
-```
+    <p>
+        Powerful hosting plans built for
+        Discord bots and communities.
+    </p>
 
-}
+</div>
 
-.hosting-card > span {
 
-```
-color: #7289ff;
 
-font-size: 10px;
+<div class="hosting-grid">
 
-font-weight: 700;
 
-letter-spacing: 2px;
-```
+    <article class="hosting-card">
 
-}
+        <span class="hosting-plan">
+            STARTER
+        </span>
 
-.hosting-card h3 {
+        <h3>
+            Starter
+        </h3>
 
-```
-margin:
-    10px 0 20px;
+        <div class="hosting-price">
 
-font-size: 25px;
-```
+            €2.99
 
-}
+            <small>
+                /month
+            </small>
 
-.hosting-card > strong {
+        </div>
 
-```
-font-size: 28px;
-```
+        <div class="hosting-specs">
 
-}
+            <span>
+                🧠 1 GB RAM
+            </span>
 
-.hosting-card > strong small {
+            <span>
+                ⚡ 1 vCPU
+            </span>
 
-```
-color: #777b89;
+            <span>
+                💾 5 GB Storage
+            </span>
 
-font-size: 11px;
+            <span>
+                🤖 1 Bot Slot
+            </span>
 
-font-weight: 400;
-```
+        </div>
 
-}
+        <button
+            onclick="addToCart('Starter Hosting', 2.99)"
+        >
+            Choose Plan
+        </button>
 
-.hosting-card p {
+    </article>
 
-```
-margin:
-    18px 0 25px;
 
-color: #777b89;
 
-font-size: 12px;
-```
+    <article class="hosting-card hosting-featured">
 
-}
 
-.hosting-card button {
+        <div class="hosting-popular">
+            MOST POPULAR
+        </div>
 
-```
-width: 100%;
 
-padding: 12px;
+        <span class="hosting-plan">
+            PRO
+        </span>
 
-border:
-    1px solid
-    #282b37;
+        <h3>
+            Pro
+        </h3>
 
-border-radius: 7px;
+        <div class="hosting-price">
 
-background:
-    #181a22;
+            €5.99
 
-color: white;
+            <small>
+                /month
+            </small>
 
-cursor: pointer;
+        </div>
 
-transition:
-    all 0.3s ease;
-```
+        <div class="hosting-specs">
 
-}
+            <span>
+                🧠 4 GB RAM
+            </span>
 
-.hosting-card button:hover {
+            <span>
+                ⚡ 2 vCPU
+            </span>
 
-```
-background:
-    #5865f2;
-
-border-color:
-    #5865f2;
-```
+            <span>
+                💾 20 GB Storage
+            </span>
 
-}
+            <span>
+                🤖 5 Bot Slots
+            </span>
 
-.hosting-featured {
+        </div>
 
-```
-border-color:
-    rgba(
-        88,
-        101,
-        242,
-        0.4
-    );
-```
+        <button
+            onclick="addToCart('Pro Hosting', 5.99)"
+        >
+            Choose Plan
+        </button>
 
-}
+    </article>
 
-.hosting-featured button {
 
-```
-background:
-    #5865f2;
-
-border-color:
-    #5865f2;
-```
 
-}
+    <article class="hosting-card">
 
-/* =====================================================
-SUPPORT
-===================================================== */
+        <span class="hosting-plan">
+            PREMIUM
+        </span>
 
-.support-section {
+        <h3>
+            Premium
+        </h3>
 
-```
-max-width: 1100px;
-
-margin:
-    100px auto;
-
-padding:
-    70px;
-
-border:
-    1px solid
-    rgba(
-        88,
-        101,
-        242,
-        0.2
-    );
-
-border-radius: 20px;
-
-background:
-
-    radial-gradient(
-        circle at 80% 50%,
-        rgba(
-            88,
-            101,
-            242,
-            0.18
-        ),
-        transparent 35%
-    ),
-
-    #101117;
-
-text-align: center;
-```
+        <div class="hosting-price">
 
-}
+            €9.99
 
-.support-section span {
+            <small>
+                /month
+            </small>
 
-```
-color: #7289ff;
+        </div>
 
-font-size: 10px;
+        <div class="hosting-specs">
 
-font-weight: 700;
+            <span>
+                🧠 8 GB RAM
+            </span>
 
-letter-spacing: 2px;
-```
+            <span>
+                ⚡ 4 vCPU
+            </span>
 
-}
+            <span>
+                💾 50 GB Storage
+            </span>
 
-.support-section h2 {
+            <span>
+                🤖 15 Bot Slots
+            </span>
 
-```
-margin:
-    12px 0;
+        </div>
 
-font-size: 35px;
-```
+        <button
+            onclick="addToCart('Premium Hosting', 9.99)"
+        >
+            Choose Plan
+        </button>
 
-}
+    </article>
 
-.support-section p {
 
+</div>
 ```
-max-width: 500px;
 
-margin:
-    0 auto 25px;
+</section>
 
-color: #777b89;
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
 
-font-size: 13px;
+<section
+    id="support"
+    class="support-section"
+>
 
-line-height: 1.7;
 ```
-
-}
-
-.support-section button {
-
-```
-padding:
-    13px 22px;
-
-border: none;
-
-border-radius: 8px;
+<div class="support-content">
 
-background:
-    #5865f2;
 
-color: white;
+    <span class="section-label">
+        NEED HELP?
+    </span>
 
-font-weight: 700;
 
-cursor: pointer;
+    <h2>
+        Your Community.
+        Our Support.
+    </h2>
 
-transition:
-    all 0.3s ease;
-```
-
-}
 
-.support-section button:hover {
-
-```
-transform:
-    translateY(-3px);
-
-box-shadow:
-    0 12px 35px
-    rgba(
-        88,
-        101,
-        242,
-        0.35
-    );
-```
+    <p>
+        Need help choosing a product?
+        Have questions about your order?
+        Our support team is ready to help.
+    </p>
 
-}
 
-/* =====================================================
-FOOTER
-===================================================== */
+    <div class="support-buttons">
 
-footer {
+        <button class="button button-primary">
+            Join Discord
+        </button>
 
-```
-padding:
-    60px 8% 30px;
-
-border-top:
-    1px solid
-    rgba(
-        255,
-        255,
-        255,
-        0.05
-    );
-
-text-align: center;
-```
+        <button class="button button-secondary">
+            Open Support
+        </button>
 
-}
+    </div>
 
-.footer-logo {
 
+</div>
 ```
-font-size: 18px;
 
-font-weight: 800;
-```
+</section>
 
-}
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
-.footer-logo span {
+<footer>
 
 ```
-color: #7289ff;
-```
-
-}
+<div class="footer-main">
 
-footer p {
 
-```
-margin:
-    12px 0 25px;
+    <div class="footer-brand">
 
-color: #666a77;
+        <div class="brand">
 
-font-size: 12px;
-```
+            <div class="brand-icon">
+                D
+            </div>
 
-}
+            <div class="brand-text">
 
-.footer-links {
+                <strong>
+                    Discord
+                </strong>
 
-```
-display: flex;
+                <span>
+                    Marketplace
+                </span>
 
-justify-content: center;
+            </div>
 
-gap: 25px;
+        </div>
 
-margin-bottom: 30px;
-```
 
-}
+        <p>
+            Premium Discord bots, hosting
+            and services for modern communities.
+        </p>
 
-.footer-links a {
+    </div>
 
-```
-color: #858895;
 
-font-size: 12px;
 
-transition:
-    color 0.3s ease;
-```
+    <div class="footer-column">
 
-}
+        <h4>
+            Marketplace
+        </h4>
 
-.footer-links a:hover {
+        <a href="#bots">
+            Discord Bots
+        </a>
 
-```
-color: #7289ff;
-```
+        <a href="#hosting">
+            Hosting
+        </a>
 
-}
+        <a href="#support">
+            Support
+        </a>
 
-footer small {
+    </div>
 
-```
-color: #4f525e;
 
-font-size: 10px;
-```
 
-}
+    <div class="footer-column">
 
-/* =====================================================
-ANIMATIONS
-===================================================== */
+        <h4>
+            Company
+        </h4>
 
-@keyframes fadeUp {
+        <a href="#">
+            About Us
+        </a>
 
-```
-from {
+        <a href="#">
+            Reviews
+        </a>
 
-    opacity: 0;
+        <a href="#">
+            Contact
+        </a>
 
-    transform:
-        translateY(30px);
+    </div>
 
-}
 
-to {
 
-    opacity: 1;
+    <div class="footer-column">
 
-    transform:
-        translateY(0);
+        <h4>
+            Legal
+        </h4>
 
-}
-```
+        <a href="#">
+            Terms
+        </a>
 
-}
+        <a href="#">
+            Privacy
+        </a>
 
-@keyframes floating {
+        <a href="#">
+            Refund Policy
+        </a>
 
-```
-0%,
-100% {
+    </div>
 
-    transform:
-        translateY(0);
 
-}
+</div>
 
-50% {
 
-    transform:
-        translateY(-12px);
 
-}
-```
+<div class="footer-bottom">
 
-}
+    <span>
+        © 2026 Discord Marketplace.
+        All rights reserved.
+    </span>
 
-@keyframes gradientMove {
+    <span>
+        Made for Discord Communities.
+    </span>
 
+</div>
 ```
-0% {
-
-    background-position:
-        0% 50%;
 
-}
+</footer>
 
-50% {
+<!-- =====================================================
+     CART SIDEBAR
+===================================================== -->
 
-    background-position:
-        100% 50%;
+<div
+    id="cart-overlay"
+    class="cart-overlay"
+    onclick="closeCart()"
+></div>
 
-}
+<aside
+    id="cart-sidebar"
+    class="cart-sidebar"
+>
 
-100% {
-
-    background-position:
-        0% 50%;
-
-}
 ```
+<div class="cart-header">
 
-}
+    <div>
 
-/* =====================================================
-RESPONSIVE
-===================================================== */
+        <span>
+            YOUR CART
+        </span>
 
-@media (
-max-width: 1000px
-) {
+        <h3>
+            Shopping Cart
+        </h3>
 
-```
-.hero {
+    </div>
 
-    grid-template-columns:
-        1fr;
 
-    text-align: center;
+    <button
+        onclick="closeCart()"
+        class="close-cart"
+    >
+        ×
+    </button>
 
-}
+</div>
 
 
-.hero-content p {
+<div
+    id="cart-items"
+    class="cart-items"
+>
 
-    margin-left: auto;
+    <div class="empty-cart">
 
-    margin-right: auto;
+        <span>
+            🛒
+        </span>
 
-}
+        <h4>
+            Your cart is empty
+        </h4>
 
+        <p>
+            Add a bot or hosting plan
+            to get started.
+        </p>
 
-.hero-buttons {
+    </div>
 
-    justify-content: center;
+</div>
 
-}
 
+<div class="cart-footer">
 
-.hero-visual {
+    <div class="cart-total">
 
-    margin-top: 30px;
+        <span>
+            Total
+        </span>
 
-}
+        <strong id="cart-total">
+            €0.00
+        </strong>
 
+    </div>
 
-.product-grid,
-.hosting-grid {
 
-    grid-template-columns:
-        1fr;
-
-}
-```
+    <button
+        class="checkout-button"
+    >
 
-}
+        Proceed to Checkout
 
-@media (
-max-width: 700px
-) {
+        →
+        
+    </button>
 
+</div>
 ```
-.navbar {
-
-    padding:
-        0 20px;
-
-}
-
-
-.navbar nav {
-
-    display: none;
-
-}
-
-
-.hero {
-
-    padding:
-        70px 20px;
-
-}
-
 
-.hero h1 {
+</aside>
 
-    font-size:
-        45px;
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-    letter-spacing:
-        -2px;
+<script src="script.js"></script>
 
-}
-
-
-.hero-visual {
-
-    min-height:
-        350px;
-
-}
-
-
-.discord-window {
-
-    width:
-        100%;
-
-    max-width:
-        400px;
-
-}
-
-
-.floating-card {
-
-    display: none;
-
-}
-
-
-.stats {
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    margin:
-        0 20px;
-
-}
-
-
-.stats div {
-
-    padding:
-        15px;
-
-    border-right:
-        none;
-
-}
-
-
-.products-section {
-
-    margin:
-        70px auto;
-
-}
-
-
-.hosting-preview {
-
-    padding:
-        70px 20px;
-
-}
-
-
-.support-section {
-
-    margin:
-        70px 20px;
-
-    padding:
-        50px 25px;
-
-}
-
-
-.support-section h2 {
-
-    font-size:
-        28px;
-
-}
-```
+</body>
 
-}
+</html>
