@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hosting | VortexBots</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --blurple: #5865F2;
+      --blurple-hover: #4752C4;
+      --bg: #0b0d17;
+      --card: rgba(255,255,255,0.05);
+      --text: #ffffff;
+      --muted: #a0a0b0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(11,13,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, #5865F2, #eb459e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .cart-btn { background: var(--blurple); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .page-header { padding: 8rem 2rem 3rem; text-align: center; }
+    .page-header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--muted); }
+    .plans {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.8rem;
+    }
+    .plan {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 2rem; text-align: center; position: relative;
+      transition: all 0.3s;
+    }
+    .plan:hover { border-color: var(--blurple); transform: translateY(-8px); }
+    .plan.popular { border-color: var(--blurple); box-shadow: 0 0 30px rgba(88,101,242,0.25); }
+    .popular-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--blurple); color: white; padding: 0.3rem 1rem;
+      border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    }
+    .plan h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .plan .price { font-size: 2.5rem; font-weight: 800; margin: 1rem 0; }
+    .plan .price span { font-size: 1rem; color: var(--muted); }
+    .plan ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+    .plan li { padding: 0.4rem 0; color: var(--muted); }
+    .plan li i { color: #57F287; margin-right: 0.5rem; }
+    .buy-btn {
+      width: 100%; background: var(--blurple); color: white; border: none;
+      padding: 0.9rem; border-radius: 12px; font-weight: 600; cursor: pointer;
+      font-size: 1rem;
+    }
+    .buy-btn:hover { background: var(--blurple-hover); }
+    footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.08); }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">VortexBots</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Αρχική</a></li>
+      <li><a href="bots.html">Bots</a></li>
+      <li><a href="hosting.html" class="active">Hosting</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Discord Bot Hosting</h1>
+    <p>Ισχυρά, σταθερά και φθηνά πακέτα. 99.9% uptime & αυτόματα backups.</p>
+  </div>
+
+  <div class="plans">
+    <div class="plan">
+      <h3>Starter</h3>
+      <div class="price">€2.99<span>/μήνα</span></div>
+      <ul>
+        <li><i class="fas fa-check"></i> 512 MB RAM</li>
+        <li><i class="fas fa-check"></i> 0.5 vCPU</li>
+        <li><i class="fas fa-check"></i> 5 GB Storage</li>
+        <li><i class="fas fa-check"></i> 1 Bot Slot</li>
+        <li><i class="fas fa-check"></i> Basic Support</li>
+      </ul>
+      <button class="buy-btn" onclick="addHosting('Starter', 2.99)">Επίλεξε</button>
+    </div>
+
+    <div class="plan popular">
+      <div class="popular-badge">Δημοφιλές</div>
+      <h3>Pro</h3>
+      <div class="price">€6.99<span>/μήνα</span></div>
+      <ul>
+        <li><i class="fas fa-check"></i> 2 GB RAM</li>
+        <li><i class="fas fa-check"></i> 1 vCPU</li>
+        <li><i class="fas fa-check"></i> 15 GB Storage</li>
+        <li><i class="fas fa-check"></i> 4 Bot Slots</li>
+        <li><i class="fas fa-check"></i> Daily Backups</li>
+        <li><i class="fas fa-check"></i> Priority Support</li>
+      </ul>
+      <button class="buy-btn" onclick="addHosting('Pro', 6.99)">Επίλεξε</button>
+    </div>
+
+    <div class="plan">
+      <h3>Ultimate</h3>
+      <div class="price">€14.99<span>/μήνα</span></div>
+      <ul>
+        <li><i class="fas fa-check"></i> 8 GB RAM</li>
+        <li><i class="fas fa-check"></i> 2.5 vCPU</li>
+        <li><i class="fas fa-check"></i> 40 GB Storage</li>
+        <li><i class="fas fa-check"></i> 12 Bot Slots</li>
+        <li><i class="fas fa-check"></i> Auto Backups + Database</li>
+        <li><i class="fas fa-check"></i> 24/7 Priority Support</li>
+      </ul>
+      <button class="buy-btn" onclick="addHosting('Ultimate', 14.99)">Επίλεξε</button>
+    </div>
+
+    <div class="plan">
+      <h3>Enterprise</h3>
+      <div class="price">€29.99<span>/μήνα</span></div>
+      <ul>
+        <li><i class="fas fa-check"></i> 16 GB RAM</li>
+        <li><i class="fas fa-check"></i> 4 vCPU</li>
+        <li><i class="fas fa-check"></i> 100 GB Storage</li>
+        <li><i class="fas fa-check"></i> Unlimited Bots</li>
+        <li><i class="fas fa-check"></i> Dedicated IP</li>
+        <li><i class="fas fa-check"></i> Custom Setup + SLA</li>
+      </ul>
+      <button class="buy-btn" onclick="addHosting('Enterprise', 29.99)">Επίλεξε</button>
+    </div>
+  </div>
+
+  <footer>© 2026 VortexBots</footer>
+
+  <script>
+    function addHosting(name, price) {
+      let cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      cart.push({ id: Date.now(), name: name + ' Hosting', price: price, type: 'hosting', icon: '🖥️' });
+      localStorage.setItem('vortexCart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${name} Hosting προστέθηκε στο καλάθι!`);
+    }
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+    updateCartCount();
+  </script>
+</body>
+</html>
