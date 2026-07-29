@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Καλάθι | VortexBots</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --blurple: #5865F2;
+      --blurple-hover: #4752C4;
+      --bg: #0b0d17;
+      --card: rgba(255,255,255,0.05);
+      --text: #ffffff;
+      --muted: #a0a0b0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(11,13,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, #5865F2, #eb459e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: white; }
+    .cart-btn { background: var(--blurple); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .page-header { padding: 8rem 2rem 2rem; text-align: center; }
+    .page-header h1 { font-size: 2.8rem; }
+    .cart-container { max-width: 800px; margin: 0 auto 5rem; padding: 0 2rem; }
+    .cart-item {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px; padding: 1.2rem 1.5rem; margin-bottom: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .item-info { display: flex; align-items: center; gap: 1rem; }
+    .item-icon { font-size: 1.8rem; }
+    .remove-btn {
+      background: rgba(237,66,69,0.2); color: #ed4245; border: none;
+      padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 500;
+    }
+    .remove-btn:hover { background: #ed4245; color: white; }
+    .cart-total {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 1.5rem; margin-top: 2rem; text-align: right;
+    }
+    .total-price { font-size: 1.8rem; font-weight: 800; color: var(--blurple); }
+    .checkout-btn {
+      background: var(--blurple); color: white; border: none;
+      padding: 1rem 2.5rem; border-radius: 12px; font-weight: 600; font-size: 1.1rem;
+      cursor: pointer; margin-top: 1rem;
+    }
+    .checkout-btn:hover { background: var(--blurple-hover); }
+    .empty { text-align: center; padding: 4rem; color: var(--muted); }
+    footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.08); }
+    @media (max-width: 768px) { .nav-links { display: none; } .cart-item { flex-direction: column; gap: 1rem; text-align: center; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">VortexBots</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Αρχική</a></li>
+      <li><a href="bots.html">Bots</a></li>
+      <li><a href="hosting.html">Hosting</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Το Καλάθι σου</h1>
+  </div>
+
+  <div class="cart-container" id="cart-container"></div>
+
+  <footer>© 2026 VortexBots</footer>
+
+  <script>
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      const container = document.getElementById('cart-container');
+      document.getElementById('cart-count').textContent = cart.length;
+
+      if (cart.length === 0) {
+        container.innerHTML = `<div class="empty"><i class="fas fa-shopping-cart" style="font-size:3rem;margin-bottom:1rem;"></i><p>Το καλάθι είναι άδειο</p><a href="bots.html" style="color:var(--blurple);">Πήγαινε στα Bots</a></div>`;
+        return;
+      }
+
+      let total = 0;
+      let html = '';
+      cart.forEach((item, index) => {
+        total += item.price;
+        html += `
+          <div class="cart-item">
+            <div class="item-info">
+              <span class="item-icon">${item.icon || '📦'}</span>
+              <div>
+                <strong>${item.name}</strong><br>
+                <span style="color:var(--muted);">€${item.price.toFixed(2)}</span>
+              </div>
+            </div>
+            <button class="remove-btn" onclick="removeItem(${index})">Αφαίρεση</button>
+          </div>
+        `;
+      });
+
+      html += `
+        <div class="cart-total">
+          <div>Σύνολο: <span class="total-price">€${total.toFixed(2)}</span></div>
+          <button class="checkout-btn" onclick="checkout()">Ολοκλήρωση Παραγγελίας</button>
+        </div>
+      `;
+      container.innerHTML = html;
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      cart.splice(index, 1);
+      localStorage.setItem('vortexCart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function checkout() {
+      alert('Ευχαριστούμε για την παραγγελία! (Demo – σε πραγματικό site θα πήγαινε σε payment gateway)\nΘα λάβεις email με οδηγίες ενεργοποίησης.');
+      localStorage.removeItem('vortexCart');
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>
