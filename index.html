@@ -1,667 +1,2168 @@
-<!DOCTYPE html>
+/* =====================================================
+DISCORD MARKETPLACE
+PREMIUM DARK UI
+===================================================== */
 
-<html lang="en">
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-<head>
+/* =====================================================
+RESET
+===================================================== */
 
-```
-<meta charset="UTF-8">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+html {
+scroll-behavior: smooth;
+}
 
-<title>Discord Marketplace</title>
-
-<link
-    rel="stylesheet"
-    href="style.css"
->
-```
-
-</head>
-
-<body>
-
-<!-- =========================
-     NAVBAR
-========================= -->
-
-<header class="navbar">
+body {
+font-family: 'Inter', sans-serif;
 
 ```
-<div class="logo">
-    Discord<span>Marketplace</span>
-</div>
+background:
+    radial-gradient(
+        circle at 10% 10%,
+        rgba(88, 101, 242, 0.12),
+        transparent 30%
+    ),
 
+    radial-gradient(
+        circle at 90% 30%,
+        rgba(139, 92, 246, 0.10),
+        transparent 30%
+    ),
 
-<nav>
+    #08090d;
 
-    <a href="#home">
-        Home
-    </a>
+color: #ffffff;
 
-    <a href="#bots">
-        Bots
-    </a>
+min-height: 100vh;
 
-    <a href="#hosting">
-        Hosting
-    </a>
-
-    <a href="#support">
-        Support
-    </a>
-
-</nav>
-
-
-<button
-    class="cart-button"
-    onclick="openCart()"
->
-
-    🛒 Cart
-
-    <span id="cart-count">
-        0
-    </span>
-
-</button>
+overflow-x: hidden;
 ```
 
-</header>
+}
 
-<!-- =========================
-     HERO
-========================= -->
-
-<section
-    id="home"
-    class="hero"
->
+a {
+text-decoration: none;
 
 ```
-<div class="hero-content">
-
-    <div class="hero-badge">
-        🚀 THE NEXT GENERATION DISCORD MARKETPLACE
-    </div>
-
-
-    <h1>
-
-        Everything Your
-        <span>Discord Server</span>
-        Needs.
-
-    </h1>
-
-
-    <p>
-
-        Discover premium Discord bots,
-        powerful hosting solutions and
-        professional tools built for
-        modern communities.
-
-    </p>
-
-
-    <div class="hero-buttons">
-
-        <a
-            href="#bots"
-            class="primary-button"
-        >
-            Explore Bots
-        </a>
-
-
-        <a
-            href="#hosting"
-            class="secondary-button"
-        >
-            View Hosting
-        </a>
-
-    </div>
-
-</div>
-
-
-
-<div class="hero-visual">
-
-    <div class="floating-card card-one">
-
-        🤖
-
-        <div>
-
-            <strong>
-                Premium Bots
-            </strong>
-
-            <small>
-                20+ Products
-            </small>
-
-        </div>
-
-    </div>
-
-
-    <div class="discord-window">
-
-        <div class="window-header">
-
-            <span></span>
-            <span></span>
-            <span></span>
-
-        </div>
-
-
-        <div class="window-content">
-
-            <div class="server-icon">
-                D
-            </div>
-
-
-            <div>
-
-                <strong>
-                    Discord Marketplace
-                </strong>
-
-                <p>
-                    Premium products for your community.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="window-stats">
-
-            <div>
-                <strong>
-                    20+
-                </strong>
-
-                <small>
-                    Bots
-                </small>
-            </div>
-
-
-            <div>
-                <strong>
-                    99.9%
-                </strong>
-
-                <small>
-                    Uptime
-                </small>
-            </div>
-
-
-            <div>
-                <strong>
-                    24/7
-                </strong>
-
-                <small>
-                    Support
-                </small>
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="floating-card card-two">
-
-        🛡️
-
-        <div>
-
-            <strong>
-                Secure
-            </strong>
-
-            <small>
-                Trusted Services
-            </small>
-
-        </div>
-
-    </div>
-
-</div>
+color: inherit;
 ```
 
-</section>
+}
 
-<!-- =========================
-     STATS
-========================= -->
+button {
+font-family: inherit;
+}
 
-<section class="stats">
+/* =====================================================
+NAVBAR
+===================================================== */
 
-```
-<div>
-
-    <strong>
-        20+
-    </strong>
-
-    <span>
-        Discord Bots
-    </span>
-
-</div>
-
-
-<div>
-
-    <strong>
-        99.9%
-    </strong>
-
-    <span>
-        Hosting Uptime
-    </span>
-
-</div>
-
-
-<div>
-
-    <strong>
-        24/7
-    </strong>
-
-    <span>
-        Customer Support
-    </span>
-
-</div>
-
-
-<div>
-
-    <strong>
-        100%
-    </strong>
-
-    <span>
-        Professional
-    </span>
-
-</div>
-```
-
-</section>
-
-<!-- =========================
-     FEATURED PRODUCTS
-========================= -->
-
-<section
-    id="bots"
-    class="products-section"
->
+.navbar {
 
 ```
-<div class="section-header">
+position: sticky;
 
-    <div>
+top: 0;
 
-        <span>
-            MARKETPLACE
-        </span>
+z-index: 1000;
 
-        <h2>
-            Featured Products
-        </h2>
+height: 75px;
 
-    </div>
+display: flex;
 
+align-items: center;
 
-    <a href="#bots">
-        View All →
-    </a>
+justify-content: space-between;
 
-</div>
+padding: 0 7%;
 
+background:
+    rgba(8, 9, 13, 0.78);
 
-<div class="product-grid">
+backdrop-filter:
+    blur(18px);
 
+-webkit-backdrop-filter:
+    blur(18px);
 
-    <div class="product-card">
-
-        <div class="product-icon">
-            🛡️
-        </div>
-
-        <span class="product-type">
-            SECURITY
-        </span>
-
-        <h3>
-            Security Bot
-        </h3>
-
-        <p>
-            Advanced anti-raid and
-            server protection system.
-        </p>
-
-        <div class="product-bottom">
-
-            <strong>
-                From €4.99
-            </strong>
-
-            <button
-                onclick="addToCart('Security Bot',4.99)"
-            >
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="product-card featured">
-
-        <div class="popular">
-            POPULAR
-        </div>
-
-        <div class="product-icon">
-            🎫
-        </div>
-
-        <span class="product-type">
-            SUPPORT
-        </span>
-
-        <h3>
-            Ticket Master
-        </h3>
-
-        <p>
-            Professional ticket system
-            for your Discord server.
-        </p>
-
-        <div class="product-bottom">
-
-            <strong>
-                From €6.99
-            </strong>
-
-            <button
-                onclick="addToCart('Ticket Master',6.99)"
-            >
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-
-
-    <div class="product-card">
-
-        <div class="product-icon">
-            ⚡
-        </div>
-
-        <span class="product-type">
-            AUTOMATION
-        </span>
-
-        <h3>
-            AutoMod Pro
-        </h3>
-
-        <p>
-            Automatic moderation and
-            powerful server management.
-        </p>
-
-        <div class="product-bottom">
-
-            <strong>
-                From €7.99
-            </strong>
-
-            <button
-                onclick="addToCart('AutoMod Pro',7.99)"
-            >
-                Add +
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
+border-bottom:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
 ```
 
-</section>
+}
 
-<!-- =========================
-     HOSTING
-========================= -->
-
-<section
-    id="hosting"
-    class="hosting-preview"
->
+.logo {
 
 ```
-<div class="section-header center">
+font-size: 20px;
 
-    <span>
-        POWERFUL INFRASTRUCTURE
-    </span>
+font-weight: 800;
 
-    <h2>
-        Discord Bot Hosting
-    </h2>
-
-    <p>
-        Fast, reliable and secure hosting
-        for your Discord bots.
-    </p>
-
-</div>
-
-
-<div class="hosting-grid">
-
-
-    <div class="hosting-card">
-
-        <span>
-            STARTER
-        </span>
-
-        <h3>
-            Starter
-        </h3>
-
-        <strong>
-            €2.99
-            <small>/month</small>
-        </strong>
-
-        <p>
-            1 GB RAM · 1 vCPU · 5 GB Storage
-        </p>
-
-        <button>
-            Choose Plan
-        </button>
-
-    </div>
-
-
-
-    <div class="hosting-card hosting-featured">
-
-        <div class="popular">
-            MOST POPULAR
-        </div>
-
-        <span>
-            PRO
-        </span>
-
-        <h3>
-            Pro
-        </h3>
-
-        <strong>
-            €5.99
-            <small>/month</small>
-        </strong>
-
-        <p>
-            4 GB RAM · 2 vCPU · 20 GB Storage
-        </p>
-
-        <button>
-            Choose Plan
-        </button>
-
-    </div>
-
-
-
-    <div class="hosting-card">
-
-        <span>
-            PREMIUM
-        </span>
-
-        <h3>
-            Premium
-        </h3>
-
-        <strong>
-            €9.99
-            <small>/month</small>
-        </strong>
-
-        <p>
-            8 GB RAM · 4 vCPU · 50 GB Storage
-        </p>
-
-        <button>
-            Choose Plan
-        </button>
-
-    </div>
-
-</div>
+letter-spacing: -0.5px;
 ```
 
-</section>
+}
 
-<!-- =========================
-     SUPPORT
-========================= -->
-
-<section
-    id="support"
-    class="support-section"
->
+.logo span {
 
 ```
-<div>
-
-    <span>
-        NEED HELP?
-    </span>
-
-    <h2>
-        We're Here For You.
-    </h2>
-
-    <p>
-        Have a question about a product,
-        hosting or your order?
-        Our support team is ready to help.
-    </p>
-
-    <button>
-        Join Discord Support
-    </button>
-
-</div>
+color: #7289ff;
 ```
 
-</section>
+}
 
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
+.navbar nav {
 
 ```
-<div class="footer-logo">
-    Discord<span>Marketplace</span>
-</div>
+display: flex;
 
-<p>
-    Premium Discord products
-    for modern communities.
-</p>
-
-<div class="footer-links">
-
-    <a href="#home">
-        Home
-    </a>
-
-    <a href="#bots">
-        Bots
-    </a>
-
-    <a href="#hosting">
-        Hosting
-    </a>
-
-    <a href="#support">
-        Support
-    </a>
-
-</div>
-
-<small>
-    © 2026 Discord Marketplace.
-    All rights reserved.
-</small>
+gap: 35px;
 ```
 
-</footer>
+}
 
-<script src="script.js"></script>
+.navbar nav a {
 
-</body>
+```
+position: relative;
 
-</html>
+color: #9295a1;
+
+font-size: 14px;
+
+font-weight: 600;
+
+transition:
+    color 0.3s ease;
+```
+
+}
+
+.navbar nav a:hover {
+
+```
+color: #ffffff;
+```
+
+}
+
+.navbar nav a::after {
+
+```
+content: '';
+
+position: absolute;
+
+left: 50%;
+
+bottom: -8px;
+
+width: 0;
+
+height: 2px;
+
+background:
+    linear-gradient(
+        90deg,
+        #5865f2,
+        #8b5cf6
+    );
+
+transform:
+    translateX(-50%);
+
+transition:
+    width 0.3s ease;
+```
+
+}
+
+.navbar nav a:hover::after {
+
+```
+width: 100%;
+```
+
+}
+
+/* CART BUTTON */
+
+.cart-button {
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+padding: 10px 16px;
+
+border: 1px solid
+    rgba(
+        114,
+        137,
+        255,
+        0.25
+    );
+
+border-radius: 9px;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.10
+    );
+
+color: #ffffff;
+
+cursor: pointer;
+
+transition:
+    all 0.3s ease;
+```
+
+}
+
+.cart-button:hover {
+
+```
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.25
+    );
+
+box-shadow:
+    0 0 25px
+    rgba(
+        88,
+        101,
+        242,
+        0.25
+    );
+
+transform:
+    translateY(-2px);
+```
+
+}
+
+#cart-count {
+
+```
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+width: 20px;
+
+height: 20px;
+
+border-radius: 50%;
+
+background: #5865f2;
+
+font-size: 11px;
+
+font-weight: 700;
+```
+
+}
+
+/* =====================================================
+HERO
+===================================================== */
+
+.hero {
+
+```
+position: relative;
+
+min-height: 680px;
+
+display: grid;
+
+grid-template-columns:
+    1.05fr
+    0.95fr;
+
+align-items: center;
+
+gap: 60px;
+
+padding:
+    80px 8%;
+
+overflow: hidden;
+```
+
+}
+
+.hero::before {
+
+```
+content: '';
+
+position: absolute;
+
+width: 600px;
+
+height: 600px;
+
+left: -250px;
+
+top: 50px;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.15
+    );
+
+filter:
+    blur(120px);
+
+border-radius: 50%;
+
+pointer-events: none;
+```
+
+}
+
+.hero-content {
+
+```
+position: relative;
+
+z-index: 2;
+
+animation:
+    fadeUp 0.8s ease forwards;
+```
+
+}
+
+.hero-badge {
+
+```
+display: inline-flex;
+
+padding:
+    9px 14px;
+
+margin-bottom: 25px;
+
+border:
+    1px solid
+    rgba(
+        114,
+        137,
+        255,
+        0.25
+    );
+
+border-radius: 100px;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.08
+    );
+
+color: #9da8ff;
+
+font-size: 10px;
+
+font-weight: 700;
+
+letter-spacing: 1px;
+```
+
+}
+
+.hero h1 {
+
+```
+max-width: 700px;
+
+font-size:
+    clamp(
+        45px,
+        6vw,
+        78px
+    );
+
+line-height: 1.05;
+
+letter-spacing:
+    -4px;
+
+margin-bottom: 25px;
+```
+
+}
+
+.hero h1 span {
+
+```
+display: block;
+
+background:
+    linear-gradient(
+        90deg,
+        #7289ff,
+        #9b6cff,
+        #7289ff
+    );
+
+background-size:
+    200% auto;
+
+-webkit-background-clip:
+    text;
+
+-webkit-text-fill-color:
+    transparent;
+
+animation:
+    gradientMove 4s
+    linear infinite;
+```
+
+}
+
+.hero p {
+
+```
+max-width: 570px;
+
+color: #9295a1;
+
+font-size: 16px;
+
+line-height: 1.8;
+
+margin-bottom: 35px;
+```
+
+}
+
+/* HERO BUTTONS */
+
+.hero-buttons {
+
+```
+display: flex;
+
+gap: 15px;
+```
+
+}
+
+.primary-button,
+.secondary-button {
+
+```
+padding:
+    14px 25px;
+
+border-radius: 9px;
+
+font-size: 14px;
+
+font-weight: 700;
+
+transition:
+    all 0.3s ease;
+```
+
+}
+
+.primary-button {
+
+```
+background:
+    linear-gradient(
+        135deg,
+        #5865f2,
+        #7657f5
+    );
+
+box-shadow:
+    0 10px 35px
+    rgba(
+        88,
+        101,
+        242,
+        0.30
+    );
+```
+
+}
+
+.primary-button:hover {
+
+```
+transform:
+    translateY(-3px);
+
+box-shadow:
+    0 15px 45px
+    rgba(
+        88,
+        101,
+        242,
+        0.45
+    );
+```
+
+}
+
+.secondary-button {
+
+```
+border:
+    1px solid
+    #282b37;
+
+background:
+    rgba(
+        255,
+        255,
+        255,
+        0.02
+    );
+
+color: #ffffff;
+```
+
+}
+
+.secondary-button:hover {
+
+```
+border-color:
+    #5865f2;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.08
+    );
+
+transform:
+    translateY(-3px);
+```
+
+}
+
+/* =====================================================
+HERO VISUAL
+===================================================== */
+
+.hero-visual {
+
+```
+position: relative;
+
+min-height: 450px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+```
+
+}
+
+.discord-window {
+
+```
+width: 430px;
+
+border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+border-radius: 18px;
+
+background:
+    rgba(
+        17,
+        18,
+        24,
+        0.85
+    );
+
+box-shadow:
+    0 30px 100px
+    rgba(
+        0,
+        0,
+        0,
+        0.45
+    ),
+
+    0 0 80px
+    rgba(
+        88,
+        101,
+        242,
+        0.12
+    );
+
+overflow: hidden;
+
+transform:
+    perspective(1000px)
+    rotateY(-5deg)
+    rotateX(3deg);
+
+animation:
+    floating 5s
+    ease-in-out
+    infinite;
+```
+
+}
+
+.window-header {
+
+```
+height: 42px;
+
+display: flex;
+
+align-items: center;
+
+gap: 7px;
+
+padding: 0 15px;
+
+background:
+    rgba(
+        255,
+        255,
+        255,
+        0.025
+    );
+
+border-bottom:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+```
+
+}
+
+.window-header span {
+
+```
+width: 9px;
+
+height: 9px;
+
+border-radius: 50%;
+
+background:
+    #3c3e48;
+```
+
+}
+
+.window-content {
+
+```
+display: flex;
+
+align-items: center;
+
+gap: 15px;
+
+padding: 35px 30px;
+```
+
+}
+
+.server-icon {
+
+```
+width: 65px;
+
+height: 65px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+border-radius: 18px;
+
+background:
+    linear-gradient(
+        135deg,
+        #5865f2,
+        #8b5cf6
+    );
+
+font-size: 25px;
+
+font-weight: 800;
+
+box-shadow:
+    0 0 30px
+    rgba(
+        88,
+        101,
+        242,
+        0.35
+    );
+```
+
+}
+
+.window-content strong {
+
+```
+font-size: 17px;
+```
+
+}
+
+.window-content p {
+
+```
+margin-top: 7px;
+
+color: #777b89;
+
+font-size: 12px;
+```
+
+}
+
+.window-stats {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(3, 1fr);
+
+padding:
+    20px 30px;
+
+border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+```
+
+}
+
+.window-stats div {
+
+```
+text-align: center;
+```
+
+}
+
+.window-stats strong {
+
+```
+display: block;
+
+color: #ffffff;
+
+font-size: 18px;
+```
+
+}
+
+.window-stats small {
+
+```
+color: #6f7280;
+
+font-size: 10px;
+```
+
+}
+
+/* FLOATING CARDS */
+
+.floating-card {
+
+```
+position: absolute;
+
+display: flex;
+
+align-items: center;
+
+gap: 12px;
+
+padding:
+    13px 17px;
+
+border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+border-radius: 12px;
+
+background:
+    rgba(
+        18,
+        19,
+        26,
+        0.85
+    );
+
+backdrop-filter:
+    blur(15px);
+
+box-shadow:
+    0 20px 50px
+    rgba(
+        0,
+        0,
+        0,
+        0.3
+    );
+
+z-index: 3;
+```
+
+}
+
+.floating-card strong {
+
+```
+display: block;
+
+font-size: 12px;
+```
+
+}
+
+.floating-card small {
+
+```
+display: block;
+
+margin-top: 3px;
+
+color: #707381;
+
+font-size: 10px;
+```
+
+}
+
+.card-one {
+
+```
+top: 40px;
+
+left: 0;
+
+animation:
+    floating 4s
+    ease-in-out
+    infinite;
+```
+
+}
+
+.card-two {
+
+```
+right: 0;
+
+bottom: 40px;
+
+animation:
+    floating 4s
+    ease-in-out
+    1s infinite;
+```
+
+}
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(4, 1fr);
+
+max-width: 1100px;
+
+margin:
+    0 auto;
+
+padding:
+    25px;
+
+border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+
+border-radius: 15px;
+
+background:
+    rgba(
+        255,
+        255,
+        255,
+        0.02
+    );
+```
+
+}
+
+.stats div {
+
+```
+text-align: center;
+
+border-right:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+```
+
+}
+
+.stats div:last-child {
+
+```
+border-right: none;
+```
+
+}
+
+.stats strong {
+
+```
+display: block;
+
+color: #ffffff;
+
+font-size: 24px;
+```
+
+}
+
+.stats span {
+
+```
+display: block;
+
+margin-top: 6px;
+
+color: #707381;
+
+font-size: 11px;
+```
+
+}
+
+/* =====================================================
+PRODUCTS
+===================================================== */
+
+.products-section {
+
+```
+max-width: 1200px;
+
+margin:
+    100px auto;
+
+padding:
+    0 25px;
+```
+
+}
+
+.section-header {
+
+```
+display: flex;
+
+align-items: flex-end;
+
+justify-content: space-between;
+
+margin-bottom: 35px;
+```
+
+}
+
+.section-header span {
+
+```
+color: #7289ff;
+
+font-size: 10px;
+
+font-weight: 700;
+
+letter-spacing: 2px;
+```
+
+}
+
+.section-header h2 {
+
+```
+margin-top: 8px;
+
+font-size: 32px;
+
+letter-spacing: -1px;
+```
+
+}
+
+.section-header a {
+
+```
+color: #8c91a0;
+
+font-size: 12px;
+
+transition:
+    color 0.3s ease;
+```
+
+}
+
+.section-header a:hover {
+
+```
+color: #7289ff;
+```
+
+}
+
+.product-grid {
+
+```
+display: grid;
+
+grid-template-columns:
+    repeat(3, 1fr);
+
+gap: 20px;
+```
+
+}
+
+.product-card {
+
+```
+position: relative;
+
+padding: 28px;
+
+border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+
+border-radius: 15px;
+
+background:
+    linear-gradient(
+        145deg,
+        rgba(
+            255,
+            255,
+            255,
+            0.035
+        ),
+        rgba(
+            255,
+            255,
+            255,
+            0.01
+        )
+    );
+
+transition:
+    transform 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+
+overflow: hidden;
+```
+
+}
+
+.product-card::before {
+
+```
+content: '';
+
+position: absolute;
+
+width: 200px;
+
+height: 200px;
+
+top: -100px;
+
+right: -100px;
+
+border-radius: 50%;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.15
+    );
+
+filter:
+    blur(50px);
+
+opacity: 0;
+
+transition:
+    opacity 0.4s ease;
+```
+
+}
+
+.product-card:hover {
+
+```
+transform:
+    translateY(-8px);
+
+border-color:
+    rgba(
+        88,
+        101,
+        242,
+        0.45
+    );
+
+box-shadow:
+    0 20px 60px
+    rgba(
+        0,
+        0,
+        0,
+        0.35
+    );
+```
+
+}
+
+.product-card:hover::before {
+
+```
+opacity: 1;
+```
+
+}
+
+.product-card.featured {
+
+```
+border-color:
+    rgba(
+        88,
+        101,
+        242,
+        0.35
+    );
+```
+
+}
+
+.product-icon {
+
+```
+width: 55px;
+
+height: 55px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+margin-bottom: 22px;
+
+border-radius: 14px;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.12
+    );
+
+font-size: 24px;
+```
+
+}
+
+.product-type {
+
+```
+color: #7289ff;
+
+font-size: 9px;
+
+font-weight: 700;
+
+letter-spacing: 2px;
+```
+
+}
+
+.product-card h3 {
+
+```
+margin:
+    8px 0;
+
+font-size: 19px;
+```
+
+}
+
+.product-card p {
+
+```
+min-height: 45px;
+
+color: #777b89;
+
+font-size: 12px;
+
+line-height: 1.7;
+```
+
+}
+
+.product-bottom {
+
+```
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+margin-top: 25px;
+
+padding-top: 20px;
+
+border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+```
+
+}
+
+.product-bottom strong {
+
+```
+font-size: 15px;
+```
+
+}
+
+.product-bottom button {
+
+```
+padding:
+    9px 14px;
+
+border: none;
+
+border-radius: 7px;
+
+background:
+    #5865f2;
+
+color: white;
+
+font-size: 11px;
+
+font-weight: 700;
+
+cursor: pointer;
+
+transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+```
+
+}
+
+.product-bottom button:hover {
+
+```
+transform:
+    translateY(-2px);
+
+box-shadow:
+    0 8px 25px
+    rgba(
+        88,
+        101,
+        242,
+        0.35
+    );
+```
+
+}
+
+.popular {
+
+```
+position: absolute;
+
+top: 15px;
+
+right: 15px;
+
+padding:
+    5px 8px;
+
+border-radius: 5px;
+
+background:
+    rgba(
+        88,
+        101,
+        242,
+        0.15
+    );
+
+color: #8c99ff;
+
+font-size: 8px;
+
+font-weight: 700;
+```
+
+}
+
+/* =====================================================
+HOSTING
+===================================================== */
+
+.hosting-preview {
+
+```
+padding:
+    100px 8%;
+
+background:
+    rgba(
+        255,
+        255,
+        255,
+        0.015
+    );
+
+border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.04
+    );
+
+border-bottom:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.04
+    );
+```
+
+}
+
+.section-header.center {
+
+```
+display: block;
+
+text-align: center;
+```
+
+}
+
+.section-header.center p {
+
+```
+max-width: 500px;
+
+margin:
+    15px auto 0;
+
+color: #777b89;
+
+font-size: 13px;
+
+line-height: 1.7;
+```
+
+}
+
+.hosting-grid {
+
+```
+max-width: 1100px;
+
+margin:
+    45px auto 0;
+
+display: grid;
+
+grid-template-columns:
+    repeat(3, 1fr);
+
+gap: 20px;
+```
+
+}
+
+.hosting-card {
+
+```
+position: relative;
+
+padding: 35px;
+
+border:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.06
+    );
+
+border-radius: 15px;
+
+background:
+    #101117;
+
+transition:
+    all 0.4s ease;
+```
+
+}
+
+.hosting-card:hover {
+
+```
+transform:
+    translateY(-8px);
+
+border-color:
+    #5865f2;
+
+box-shadow:
+    0 20px 60px
+    rgba(
+        88,
+        101,
+        242,
+        0.12
+    );
+```
+
+}
+
+.hosting-card > span {
+
+```
+color: #7289ff;
+
+font-size: 10px;
+
+font-weight: 700;
+
+letter-spacing: 2px;
+```
+
+}
+
+.hosting-card h3 {
+
+```
+margin:
+    10px 0 20px;
+
+font-size: 25px;
+```
+
+}
+
+.hosting-card > strong {
+
+```
+font-size: 28px;
+```
+
+}
+
+.hosting-card > strong small {
+
+```
+color: #777b89;
+
+font-size: 11px;
+
+font-weight: 400;
+```
+
+}
+
+.hosting-card p {
+
+```
+margin:
+    18px 0 25px;
+
+color: #777b89;
+
+font-size: 12px;
+```
+
+}
+
+.hosting-card button {
+
+```
+width: 100%;
+
+padding: 12px;
+
+border:
+    1px solid
+    #282b37;
+
+border-radius: 7px;
+
+background:
+    #181a22;
+
+color: white;
+
+cursor: pointer;
+
+transition:
+    all 0.3s ease;
+```
+
+}
+
+.hosting-card button:hover {
+
+```
+background:
+    #5865f2;
+
+border-color:
+    #5865f2;
+```
+
+}
+
+.hosting-featured {
+
+```
+border-color:
+    rgba(
+        88,
+        101,
+        242,
+        0.4
+    );
+```
+
+}
+
+.hosting-featured button {
+
+```
+background:
+    #5865f2;
+
+border-color:
+    #5865f2;
+```
+
+}
+
+/* =====================================================
+SUPPORT
+===================================================== */
+
+.support-section {
+
+```
+max-width: 1100px;
+
+margin:
+    100px auto;
+
+padding:
+    70px;
+
+border:
+    1px solid
+    rgba(
+        88,
+        101,
+        242,
+        0.2
+    );
+
+border-radius: 20px;
+
+background:
+
+    radial-gradient(
+        circle at 80% 50%,
+        rgba(
+            88,
+            101,
+            242,
+            0.18
+        ),
+        transparent 35%
+    ),
+
+    #101117;
+
+text-align: center;
+```
+
+}
+
+.support-section span {
+
+```
+color: #7289ff;
+
+font-size: 10px;
+
+font-weight: 700;
+
+letter-spacing: 2px;
+```
+
+}
+
+.support-section h2 {
+
+```
+margin:
+    12px 0;
+
+font-size: 35px;
+```
+
+}
+
+.support-section p {
+
+```
+max-width: 500px;
+
+margin:
+    0 auto 25px;
+
+color: #777b89;
+
+font-size: 13px;
+
+line-height: 1.7;
+```
+
+}
+
+.support-section button {
+
+```
+padding:
+    13px 22px;
+
+border: none;
+
+border-radius: 8px;
+
+background:
+    #5865f2;
+
+color: white;
+
+font-weight: 700;
+
+cursor: pointer;
+
+transition:
+    all 0.3s ease;
+```
+
+}
+
+.support-section button:hover {
+
+```
+transform:
+    translateY(-3px);
+
+box-shadow:
+    0 12px 35px
+    rgba(
+        88,
+        101,
+        242,
+        0.35
+    );
+```
+
+}
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+footer {
+
+```
+padding:
+    60px 8% 30px;
+
+border-top:
+    1px solid
+    rgba(
+        255,
+        255,
+        255,
+        0.05
+    );
+
+text-align: center;
+```
+
+}
+
+.footer-logo {
+
+```
+font-size: 18px;
+
+font-weight: 800;
+```
+
+}
+
+.footer-logo span {
+
+```
+color: #7289ff;
+```
+
+}
+
+footer p {
+
+```
+margin:
+    12px 0 25px;
+
+color: #666a77;
+
+font-size: 12px;
+```
+
+}
+
+.footer-links {
+
+```
+display: flex;
+
+justify-content: center;
+
+gap: 25px;
+
+margin-bottom: 30px;
+```
+
+}
+
+.footer-links a {
+
+```
+color: #858895;
+
+font-size: 12px;
+
+transition:
+    color 0.3s ease;
+```
+
+}
+
+.footer-links a:hover {
+
+```
+color: #7289ff;
+```
+
+}
+
+footer small {
+
+```
+color: #4f525e;
+
+font-size: 10px;
+```
+
+}
+
+/* =====================================================
+ANIMATIONS
+===================================================== */
+
+@keyframes fadeUp {
+
+```
+from {
+
+    opacity: 0;
+
+    transform:
+        translateY(30px);
+
+}
+
+to {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+```
+
+}
+
+@keyframes floating {
+
+```
+0%,
+100% {
+
+    transform:
+        translateY(0);
+
+}
+
+50% {
+
+    transform:
+        translateY(-12px);
+
+}
+```
+
+}
+
+@keyframes gradientMove {
+
+```
+0% {
+
+    background-position:
+        0% 50%;
+
+}
+
+50% {
+
+    background-position:
+        100% 50%;
+
+}
+
+100% {
+
+    background-position:
+        0% 50%;
+
+}
+```
+
+}
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media (
+max-width: 1000px
+) {
+
+```
+.hero {
+
+    grid-template-columns:
+        1fr;
+
+    text-align: center;
+
+}
+
+
+.hero-content p {
+
+    margin-left: auto;
+
+    margin-right: auto;
+
+}
+
+
+.hero-buttons {
+
+    justify-content: center;
+
+}
+
+
+.hero-visual {
+
+    margin-top: 30px;
+
+}
+
+
+.product-grid,
+.hosting-grid {
+
+    grid-template-columns:
+        1fr;
+
+}
+```
+
+}
+
+@media (
+max-width: 700px
+) {
+
+```
+.navbar {
+
+    padding:
+        0 20px;
+
+}
+
+
+.navbar nav {
+
+    display: none;
+
+}
+
+
+.hero {
+
+    padding:
+        70px 20px;
+
+}
+
+
+.hero h1 {
+
+    font-size:
+        45px;
+
+    letter-spacing:
+        -2px;
+
+}
+
+
+.hero-visual {
+
+    min-height:
+        350px;
+
+}
+
+
+.discord-window {
+
+    width:
+        100%;
+
+    max-width:
+        400px;
+
+}
+
+
+.floating-card {
+
+    display: none;
+
+}
+
+
+.stats {
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    margin:
+        0 20px;
+
+}
+
+
+.stats div {
+
+    padding:
+        15px;
+
+    border-right:
+        none;
+
+}
+
+
+.products-section {
+
+    margin:
+        70px auto;
+
+}
+
+
+.hosting-preview {
+
+    padding:
+        70px 20px;
+
+}
+
+
+.support-section {
+
+    margin:
+        70px 20px;
+
+    padding:
+        50px 25px;
+
+}
+
+
+.support-section h2 {
+
+    font-size:
+        28px;
+
+}
+```
+
+}
