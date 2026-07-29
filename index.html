@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord Bots & Hosting Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: sans-serif; }
+        .purple-gradient { background: linear-gradient(135deg, #5865F2 0%, #7289da 100%); }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <nav class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <i class="fa-brands fa-discord text-indigo-500 text-3xl"></i>
+                    <span class="font-bold text-xl tracking-wide">BotHost<span class="text-indigo-500">Node</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium">
+                    <a href="#home" class="hover:text-indigo-400 transition">Home</a>
+                    <a href="#hosting" class="hover:text-indigo-400 transition">Hosting</a>
+                    <a href="#custom" class="hover:text-indigo-400 transition">Custom Bots</a>
+                    <a href="#support" class="hover:text-indigo-400 transition">Support</a>
+                </div>
+                <div class="relative">
+                    <button id="cartBtn" onclick="toggleCart()" class="purple-gradient px-4 py-2 rounded-lg font-semibold flex items-center gap-2 hover:opacity-90 transition">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Καλάθι</span>
+                        <span id="cartCount" class="bg-white text-indigo-600 rounded-full px-2 py-0.5 text-xs font-bold">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="py-20 text-center px-4">
+        <h1 class="text-5xl font-extrabold mb-4">Επαγγελματικά <span class="text-indigo-500">Discord Bots</span> & Hosting</h1>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-8">Δώσε ισχύ στον Discord Server σου με 99.9% Uptime, γρήγορους servers και εξειδικευμένους αυτοματισμούς.</p>
+        <a href="#hosting" class="purple-gradient px-8 py-3 rounded-xl font-bold text-lg shadow-lg hover:shadow-indigo-500/30 transition">Δες τα Πλάνα</a>
+    </section>
+
+    <section id="hosting" class="py-16 bg-slate-900/50 px-4">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">Hosting για Discord Servers & Bots</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between hover:border-indigo-500 transition">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Starter Bot Host</h3>
+                        <p class="text-3xl font-extrabold mb-4">€2.99<span class="text-sm font-normal text-slate-400">/μήνα</span></p>
+                        <ul class="text-slate-300 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> 1GB RAM</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Node.js / Python Support</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> 24/7 Uptime</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Starter Bot Host', 2.99)" class="w-full bg-slate-700 hover:bg-indigo-600 py-2 rounded-lg font-semibold transition">Προσθήκη στο Καλάθι</button>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border-2 border-indigo-500 flex flex-col justify-between shadow-xl relative">
+                    <span class="bg-indigo-500 text-xs font-bold px-3 py-1 rounded-full absolute -top-3 right-6">POPULAR</span>
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Pro Bot Host</h3>
+                        <p class="text-3xl font-extrabold mb-4">€5.99<span class="text-sm font-normal text-slate-400">/μήνα</span></p>
+                        <ul class="text-slate-300 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> 4GB RAM</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Database Support (MongoDB/MySQL)</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> 24/7 Uptime + Backups</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Pro Bot Host', 5.99)" class="w-full purple-gradient hover:opacity-90 py-2 rounded-lg font-semibold transition">Προσθήκη στο Καλάθι</button>
+                </div>
+                <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between hover:border-indigo-500 transition">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Full Server Setup</h3>
+                        <p class="text-3xl font-extrabold mb-4">€15.00<span class="text-sm font-normal text-slate-400">/εφάπαξ</span></p>
+                        <ul class="text-slate-300 space-y-2 mb-6">
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Πλήρες Στήσιμο Server</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Roles & Permissions</li>
+                            <li><i class="fa-solid fa-check text-green-400 mr-2"></i> Auto-moderation Setup</li>
+                        </ul>
+                    </div>
+                    <button onclick="addToCart('Full Server Setup', 15.00)" class="w-full bg-slate-700 hover:bg-indigo-600 py-2 rounded-lg font-semibold transition">Προσθήκη στο Καλάθι</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="custom" class="py-16 px-4">
+        <div class="max-w-4xl mx-auto bg-slate-800/80 p-8 rounded-2xl border border-slate-700">
+            <h2 class="text-3xl font-bold mb-4 text-center">Custom Discord Bot Request</h2>
+            <p class="text-slate-400 text-center mb-6">Θέλεις ένα bot φτιαγμένο αποκλειστικά για τον δικό σου server; Συμπλήρωσε τι χρειάζεσαι!</p>
+            <form id="customBotForm" class="space-y-4" onsubmit="handleCustomSubmit(event)">
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Όνομα στο Discord (π.χ. User#0000)</label>
+                    <input type="text" required class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="block mb-1 text-sm font-medium">Περιγραφή Custom Bot / Δυνατότητες</label>
+                    <textarea rows="4" required placeholder="Π.χ. Θέλω ένα bot για Economy σύστημα, Ticket System..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+                <button type="submit" class="w-full purple-gradient py-3 rounded-lg font-bold hover:opacity-90 transition">Αποστολή Αιτήματος</button>
+            </form>
+        </div>
+    </section>
+
+    <section id="support" class="py-16 bg-slate-900/50 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Χρειάζεσαι Υποστήριξη;</h2>
+            <p class="text-slate-400 mb-8">Έλα στον official Discord Server μας για άμεση βοήθεια και tickets!</p>
+            <a href="https://discord.gg" target="_blank" class="inline-flex items-center gap-3 bg-[#5865F2] hover:bg-[#4752C4] px-6 py-3 rounded-xl font-bold text-lg transition">
+                <i class="fa-brands fa-discord text-2xl"></i> Join Support Server
+            </a>
+        </div>
+    </section>
+
+    <div id="cartModal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-50 px-4">
+        <div class="bg-slate-800 max-w-lg w-full rounded-2xl p-6 border border-slate-700">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold">Το Καλάθι σου</h3>
+                <button onclick="toggleCart()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+            <div id="cartItems" class="space-y-3 max-h-60 overflow-y-auto mb-4 border-t border-b border-slate-700 py-3">
+                <p class="text-slate-400 text-center">Το καλάθι είναι άδειο.</p>
+            </div>
+            <div class="flex justify-between items-center mb-6">
+                <span class="font-bold text-lg">Σύνολο:</span>
+                <span id="cartTotal" class="text-2xl font-extrabold text-indigo-400">€0.00</span>
+            </div>
+            <button onclick="checkout()" class="w-full purple-gradient py-3 rounded-lg font-bold hover:opacity-90 transition">Ολοκλήρωση Παραγγελίας</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
