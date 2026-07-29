@@ -119,4 +119,78 @@
 <body>
   <nav>
     <div class="logo">VortexBots</div>
-    <
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Αρχική</a></li>
+      <li><a href="bots.html">Bots</a></li>
+      <li><a href="hosting.html">Hosting</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <a href="cart.html" class="cart-btn">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cart-count">0</span>
+    </a>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Premium Discord Bots<br>& Hosting</h1>
+      <p>Αναβάθμισε τον server σου με επαγγελματικά bots και αξιόπιστο 24/7 hosting. Έτοιμα για χρήση σε δευτερόλεπτα.</p>
+      <a href="bots.html" class="btn-primary">Δες τα Bots</a>
+      <a href="hosting.html" class="btn-secondary">Hosting Plans</a>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <div class="stat-num">20+</div>
+      <div class="stat-label">Premium Bots</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">99.9%</div>
+      <div class="stat-label">Uptime</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label">Support</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5k+</div>
+      <div class="stat-label">Happy Servers</div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="section-title">Γιατί VortexBots;</h2>
+    <div class="grid">
+      <div class="card">
+        <i class="fas fa-robot"></i>
+        <h3>Έτοιμα Premium Bots</h3>
+        <p>20+ πλήρως ρυθμισμένα bots για moderation, music, economy, tickets και πολλά άλλα.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-server"></i>
+        <h3>Ισχυρό Hosting</h3>
+        <p>Dedicated resources, αυτόματες backups και 99.9% uptime. Ξεκίνα από 2.99€/μήνα.</p>
+      </div>
+      <div class="card">
+        <i class="fas fa-headset"></i>
+        <h3>Γρήγορο Support</h3>
+        <p>Ticket system με μέσο χρόνο απάντησης κάτω από 2 ώρες. Πάντα δίπλα σου.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 VortexBots. All rights reserved. | Made for Discord communities</p>
+  </footer>
+
+  <script>
+    // Update cart count
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+    updateCartCount();
+  </script>
+</body>
+</html>
