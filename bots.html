@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bots | VortexBots</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --blurple: #5865F2;
+      --blurple-hover: #4752C4;
+      --bg: #0b0d17;
+      --card: rgba(255,255,255,0.05);
+      --text: #ffffff;
+      --muted: #a0a0b0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); }
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 1000;
+      background: rgba(11,13,23,0.85); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo { font-size: 1.6rem; font-weight: 700; background: linear-gradient(90deg, #5865F2, #eb459e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: white; }
+    .cart-btn { background: var(--blurple); color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; text-decoration: none; }
+    .cart-btn:hover { background: var(--blurple-hover); }
+    .page-header { padding: 8rem 2rem 3rem; text-align: center; }
+    .page-header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+    .page-header p { color: var(--muted); }
+    .bots-grid {
+      max-width: 1300px; margin: 0 auto; padding: 0 2rem 5rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+    .bot-card {
+      background: var(--card); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 1.5rem; transition: all 0.25s;
+      display: flex; flex-direction: column;
+    }
+    .bot-card:hover { border-color: var(--blurple); transform: translateY(-4px); }
+    .bot-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .bot-card h3 { margin-bottom: 0.4rem; }
+    .bot-card p { color: var(--muted); font-size: 0.9rem; flex-grow: 1; margin-bottom: 1.2rem; }
+    .bot-price { font-size: 1.3rem; font-weight: 700; color: var(--blurple); margin-bottom: 1rem; }
+    .add-btn {
+      background: var(--blurple); color: white; border: none;
+      padding: 0.7rem; border-radius: 10px; font-weight: 600; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .add-btn:hover { background: var(--blurple-hover); }
+    footer { text-align: center; padding: 2rem; color: var(--muted); border-top: 1px solid rgba(255,255,255,0.08); }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">VortexBots</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Αρχική</a></li>
+      <li><a href="bots.html" class="active">Bots</a></li>
+      <li><a href="hosting.html">Hosting</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> <span id="cart-count">0</span></a>
+  </nav>
+
+  <div class="page-header">
+    <h1>Premium Discord Bots</h1>
+    <p>Επίλεξε από 20 επαγγελματικά bots. Άμεση παράδοση & lifetime updates.</p>
+  </div>
+
+  <div class="bots-grid" id="bots-container"></div>
+
+  <footer>© 2026 VortexBots</footer>
+
+  <script>
+    const bots = [
+      { id: 1, name: "Aegis Guard", icon: "🛡️", desc: "Πλήρες moderation bot με auto-mod, warn system, anti-raid και logs.", price: 14.99 },
+      { id: 2, name: "Melody Wave", icon: "🎵", desc: "Υψηλής ποιότητας music bot με Spotify, YouTube, filters και queue.", price: 12.99 },
+      { id: 3, name: "TicketMaster Pro", icon: "🎫", desc: "Προηγμένο ticket system με categories, transcripts και staff claims.", price: 9.99 },
+      { id: 4, name: "EcoRise", icon: "💰", desc: "Πλήρες economy bot: jobs, shop, gambling, levels και bank.", price: 11.99 },
+      { id: 5, name: "WelcomeForge", icon: "👋", desc: "Custom welcome/leave messages, roles, embeds και image generation.", price: 7.99 },
+      { id: 6, name: "GiveawayX", icon: "🎁", desc: "Advanced giveaways με role requirements, multi-winners και timers.", price: 8.99 },
+      { id: 7, name: "PollMaster", icon: "📊", desc: "Δημιουργία polls, surveys και voting με buttons & results.", price: 6.99 },
+      { id: 8, name: "LevelUp Elite", icon: "📈", desc: "XP system, ranks, leaderboards και custom rewards.", price: 9.99 },
+      { id: 9, name: "AI Companion", icon: "🤖", desc: "AI chatbot με GPT-style responses, memory και custom personality.", price: 19.99 },
+      { id: 10, name: "AntiSpam Shield", icon: "🚫", desc: "Προστασία από spam, raids, fake accounts και mass mentions.", price: 10.99 },
+      { id: 11, name: "BirthdayBot", icon: "🎂", desc: "Αυτόματες ευχές γενεθλίων, role και announcements.", price: 5.99 },
+      { id: 12, name: "VerifyFlow", icon: "✅", desc: "Captcha & button verification για νέα μέλη.", price: 7.49 },
+      { id: 13, name: "RPG Realm", icon: "⚔️", desc: "Πλήρες RPG bot με dungeons, inventory, combat και parties.", price: 16.99 },
+      { id: 14, name: "MemeForge", icon: "😂", desc: "Meme generator, random memes και custom templates.", price: 6.49 },
+      { id: 15, name: "WeatherWatch", icon: "🌤️", desc: "Πραγματικός καιρός, forecasts και alerts για πόλεις.", price: 5.99 },
+      { id: 16, name: "CountMaster", icon: "🔢", desc: "Counting game με anti-cheat και leaderboards.", price: 4.99 },
+      { id: 17, name: "SuggestionBox", icon: "💡", desc: "Σύστημα suggestions με voting και staff review.", price: 7.99 },
+      { id: 18, name: "AnnouncePro", icon: "📢", desc: "Scheduled announcements, embeds και multi-channel posts.", price: 8.49 },
+      { id: 19, name: "ReactionRoles+", icon: "🎭", desc: "Προηγμένα reaction & button roles με categories.", price: 9.49 },
+      { id: 20, name: "LogKeeper", icon: "📋", desc: "Πλήρη audit logs για messages, members, roles και channels.", price: 8.99 }
+    ];
+
+    const container = document.getElementById('bots-container');
+    bots.forEach(bot => {
+      const card = document.createElement('div');
+      card.className = 'bot-card';
+      card.innerHTML = `
+        <div class="bot-icon">${bot.icon}</div>
+        <h3>${bot.name}</h3>
+        <p>${bot.desc}</p>
+        <div class="bot-price">€${bot.price.toFixed(2)}</div>
+        <button class="add-btn" onclick="addToCart(${bot.id})">Προσθήκη στο Καλάθι</button>
+      `;
+      container.appendChild(card);
+    });
+
+    function addToCart(id) {
+      const bot = bots.find(b => b.id === id);
+      let cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      cart.push({ ...bot, type: 'bot' });
+      localStorage.setItem('vortexCart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${bot.name} προστέθηκε στο καλάθι!`);
+    }
+
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      document.getElementById('cart-count').textContent = cart.length;
+    }
+    updateCartCount();
+  </script>
+</body>
+</html>
