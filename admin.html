@@ -22,8 +22,6 @@
       color: var(--text);
       min-height: 100vh;
     }
-
-    /* Login Screen */
     #login-screen {
       min-height: 100vh;
       display: flex;
@@ -77,8 +75,6 @@
       font-size: 0.9rem;
       display: none;
     }
-
-    /* Admin Panel */
     #admin-panel { display: none; }
     .admin-header {
       background: rgba(11,13,23,0.95);
@@ -97,7 +93,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .header-actions { display: flex; gap: 0.8rem; align-items: center; }
+    .header-actions { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; }
     .logout-btn, .clear-btn {
       background: transparent;
       border: 1px solid rgba(255,255,255,0.2);
@@ -109,14 +105,11 @@
     }
     .logout-btn:hover { border-color: var(--danger); color: var(--danger); }
     .clear-btn:hover { border-color: #faa61a; color: #faa61a; }
-
     .admin-content {
       max-width: 1100px;
       margin: 0 auto;
       padding: 2rem 1.5rem 4rem;
     }
-
-    /* Stats */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -136,8 +129,6 @@
       color: var(--blurple);
     }
     .stat-card .label { color: var(--muted); font-size: 0.9rem; margin-top: 0.3rem; }
-
-    /* Sections */
     .section {
       background: var(--card);
       border: 1px solid rgba(255,255,255,0.08);
@@ -152,8 +143,6 @@
       align-items: center;
       gap: 0.5rem;
     }
-
-    /* Tickets */
     .ticket {
       background: rgba(0,0,0,0.25);
       border: 1px solid rgba(255,255,255,0.07);
@@ -201,14 +190,11 @@
     .badge-payment { background: rgba(250,166,26,0.2); color: #faa61a; }
     .badge-feature { background: rgba(235,69,158,0.2); color: #eb459e; }
     .badge-other { background: rgba(160,160,176,0.2); color: #a0a0b0; }
-
     .empty-state {
       text-align: center;
       padding: 2.5rem;
       color: var(--muted);
     }
-
-    /* Orders */
     .order-item {
       display: flex;
       justify-content: space-between;
@@ -217,7 +203,6 @@
       border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .order-item:last-child { border-bottom: none; }
-
     @media (max-width: 600px) {
       .ticket-header { flex-direction: column; }
       .admin-header { flex-direction: column; gap: 0.8rem; }
@@ -226,7 +211,6 @@
 </head>
 <body>
 
-  <!-- ========== LOGIN ========== -->
   <div id="login-screen">
     <div class="login-box">
       <h1>VortexBots</h1>
@@ -237,7 +221,6 @@
     </div>
   </div>
 
-  <!-- ========== ADMIN PANEL ========== -->
   <div id="admin-panel">
     <div class="admin-header">
       <h1>🛡️ Owner Panel</h1>
@@ -249,7 +232,6 @@
     </div>
 
     <div class="admin-content">
-      <!-- Stats -->
       <div class="stats-grid">
         <div class="stat-card">
           <div class="num" id="stat-tickets">0</div>
@@ -269,7 +251,6 @@
         </div>
       </div>
 
-      <!-- Tickets Section -->
       <div class="section">
         <h2>🎫 Support Tickets</h2>
         <div id="tickets-container">
@@ -277,7 +258,6 @@
         </div>
       </div>
 
-      <!-- Cart / Orders Section -->
       <div class="section">
         <h2>🛒 Τρέχον Καλάθι (τοπικό)</h2>
         <div id="orders-container">
@@ -288,14 +268,42 @@
   </div>
 
   <script>
-    // ========== ΡΥΘΜΙΣΕΙΣ ==========
-    const OWNER_PASSWORD = "vortex2026";   // ← Άλλαξε αυτόν τον κωδικό!
-    // ==============================
+    // ===== ΑΣΦΑΛΗΣ STORAGE (local + session) =====
+    const safeStorage = {
+      _mem: {},
+      get(key, type = 'local') {
+        try {
+          if (type === 'session') return sessionStorage.getItem(key);
+          return localStorage.getItem(key);
+        } catch (e) {
+          return this._mem[type + '_' + key] || null;
+        }
+      },
+      set(key, value, type = 'local') {
+        try {
+          if (type === 'session') sessionStorage.setItem(key, value);
+          else localStorage.setItem(key, value);
+        } catch (e) {
+          this._mem[type + '_' + key] = value;
+        }
+      },
+      remove(key, type = 'local') {
+        try {
+          if (type === 'session') sessionStorage.removeItem(key);
+          else localStorage.removeItem(key);
+        } catch (e) {
+          delete this._mem[type + '_' + key];
+        }
+      }
+    };
+    // ============================================
+
+    const OWNER_PASSWORD = "vortex2026";   // ← Άλλαξε τον κωδικό αν θέλεις
 
     function login() {
       const pass = document.getElementById('password').value;
       if (pass === OWNER_PASSWORD) {
-        sessionStorage.setItem('vortexOwner', 'true');
+        safeStorage.set('vortexOwner', 'true', 'session');
         showPanel();
       } else {
         document.getElementById('error-msg').style.display = 'block';
@@ -305,13 +313,12 @@
       }
     }
 
-    // Enter key
     document.getElementById('password').addEventListener('keypress', function(e) {
       if (e.key === 'Enter') login();
     });
 
     function logout() {
-      sessionStorage.removeItem('vortexOwner');
+      safeStorage.remove('vortexOwner', 'session');
       document.getElementById('admin-panel').style.display = 'none';
       document.getElementById('login-screen').style.display = 'flex';
       document.getElementById('password').value = '';
@@ -323,16 +330,16 @@
       loadData();
     }
 
-    // Auto login αν είναι ήδη logged in
-    if (sessionStorage.getItem('vortexOwner') === 'true') {
+    // Auto-login αν είναι ήδη logged in
+    if (safeStorage.get('vortexOwner', 'session') === 'true') {
       showPanel();
     }
 
     function loadData() {
-      // ===== Tickets =====
+      // Tickets
       let tickets = [];
       try {
-        tickets = JSON.parse(localStorage.getItem('vortexTickets') || '[]');
+        tickets = JSON.parse(safeStorage.get('vortexTickets') || '[]');
       } catch (e) { tickets = []; }
 
       document.getElementById('stat-tickets').textContent = tickets.length;
@@ -341,8 +348,7 @@
       if (tickets.length === 0) {
         ticketsContainer.innerHTML = '<div class="empty-state">Δεν υπάρχουν tickets ακόμα</div>';
       } else {
-        // Νεότερα πρώτα
-        tickets = tickets.reverse();
+        tickets = tickets.slice().reverse();
         let html = '';
         tickets.forEach(t => {
           const date = new Date(t.date).toLocaleString('el-GR');
@@ -367,18 +373,15 @@
         ticketsContainer.innerHTML = html;
       }
 
-      // ===== Cart =====
+      // Cart
       let cart = [];
       try {
-        cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+        cart = JSON.parse(safeStorage.get('vortexCart') || '[]');
       } catch (e) { cart = []; }
 
       document.getElementById('stat-orders').textContent = cart.length;
-
-      const botsCount = cart.filter(i => i.type === 'bot').length;
-      const hostingCount = cart.filter(i => i.type === 'hosting').length;
-      document.getElementById('stat-bots').textContent = botsCount;
-      document.getElementById('stat-hosting').textContent = hostingCount;
+      document.getElementById('stat-bots').textContent = cart.filter(i => i.type === 'bot').length;
+      document.getElementById('stat-hosting').textContent = cart.filter(i => i.type === 'hosting').length;
 
       const ordersContainer = document.getElementById('orders-container');
       if (cart.length === 0) {
@@ -409,7 +412,7 @@
 
     function clearTickets() {
       if (confirm('Σίγουρα θέλεις να διαγράψεις ΟΛΑ τα tickets;')) {
-        localStorage.removeItem('vortexTickets');
+        safeStorage.remove('vortexTickets');
         loadData();
         alert('Tickets διαγράφηκαν.');
       }
@@ -417,7 +420,7 @@
 
     function clearCart() {
       if (confirm('Σίγουρα θέλεις να αδειάσεις το καλάθι;')) {
-        localStorage.removeItem('vortexCart');
+        safeStorage.remove('vortexCart');
         loadData();
         alert('Καλάθι άδειασε.');
       }
