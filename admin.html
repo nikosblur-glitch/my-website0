@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Panel | VortexBots</title>
+  <style>
+    :root {
+      --blurple: #5865F2;
+      --blurple-hover: #4752C4;
+      --bg: #0b0d17;
+      --card: rgba(255,255,255,0.05);
+      --text: #ffffff;
+      --muted: #a0a0b0;
+      --danger: #ed4245;
+      --success: #57F287;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* Login Screen */
+    #login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .login-box {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-box h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(90deg, #5865F2, #eb459e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .login-box p { color: var(--muted); margin-bottom: 2rem; font-size: 0.95rem; }
+    .login-box input {
+      width: 100%;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 0.9rem 1rem;
+      color: white;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .login-box input:focus { outline: none; border-color: var(--blurple); }
+    .login-btn {
+      width: 100%;
+      background: var(--blurple);
+      color: white;
+      border: none;
+      padding: 0.95rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .login-btn:hover { background: var(--blurple-hover); }
+    .error-msg {
+      color: var(--danger);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* Admin Panel */
+    #admin-panel { display: none; }
+    .admin-header {
+      background: rgba(11,13,23,0.95);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-header h1 {
+      font-size: 1.4rem;
+      background: linear-gradient(90deg, #5865F2, #eb459e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header-actions { display: flex; gap: 0.8rem; align-items: center; }
+    .logout-btn, .clear-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .logout-btn:hover { border-color: var(--danger); color: var(--danger); }
+    .clear-btn:hover { border-color: #faa61a; color: #faa61a; }
+
+    .admin-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 1.4rem;
+      text-align: center;
+    }
+    .stat-card .num {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--blurple);
+    }
+    .stat-card .label { color: var(--muted); font-size: 0.9rem; margin-top: 0.3rem; }
+
+    /* Sections */
+    .section {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Tickets */
+    .ticket {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .ticket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .ticket-id {
+      font-weight: 700;
+      color: var(--blurple);
+      font-size: 0.95rem;
+    }
+    .ticket-meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .ticket-subject {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .ticket-message {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .badge-bot { background: rgba(88,101,242,0.2); color: #5865F2; }
+    .badge-hosting { background: rgba(87,242,135,0.15); color: #57F287; }
+    .badge-payment { background: rgba(250,166,26,0.2); color: #faa61a; }
+    .badge-feature { background: rgba(235,69,158,0.2); color: #eb459e; }
+    .badge-other { background: rgba(160,160,176,0.2); color: #a0a0b0; }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--muted);
+    }
+
+    /* Orders */
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .order-item:last-child { border-bottom: none; }
+
+    @media (max-width: 600px) {
+      .ticket-header { flex-direction: column; }
+      .admin-header { flex-direction: column; gap: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== LOGIN ========== -->
+  <div id="login-screen">
+    <div class="login-box">
+      <h1>VortexBots</h1>
+      <p>Owner Panel – Μόνο για διαχειριστή</p>
+      <input type="password" id="password" placeholder="Κωδικός πρόσβασης" autocomplete="off">
+      <button class="login-btn" onclick="login()">Είσοδος</button>
+      <div class="error-msg" id="error-msg">Λάθος κωδικός</div>
+    </div>
+  </div>
+
+  <!-- ========== ADMIN PANEL ========== -->
+  <div id="admin-panel">
+    <div class="admin-header">
+      <h1>🛡️ Owner Panel</h1>
+      <div class="header-actions">
+        <button class="clear-btn" onclick="clearTickets()">Καθαρισμός Tickets</button>
+        <button class="clear-btn" onclick="clearCart()">Καθαρισμός Cart</button>
+        <button class="logout-btn" onclick="logout()">Αποσύνδεση</button>
+      </div>
+    </div>
+
+    <div class="admin-content">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="num" id="stat-tickets">0</div>
+          <div class="label">Support Tickets</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-orders">0</div>
+          <div class="label">Στοιχεία στο Καλάθι</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-bots">0</div>
+          <div class="label">Bots στο Καλάθι</div>
+        </div>
+        <div class="stat-card">
+          <div class="num" id="stat-hosting">0</div>
+          <div class="label">Hosting στο Καλάθι</div>
+        </div>
+      </div>
+
+      <!-- Tickets Section -->
+      <div class="section">
+        <h2>🎫 Support Tickets</h2>
+        <div id="tickets-container">
+          <div class="empty-state">Δεν υπάρχουν tickets ακόμα</div>
+        </div>
+      </div>
+
+      <!-- Cart / Orders Section -->
+      <div class="section">
+        <h2>🛒 Τρέχον Καλάθι (τοπικό)</h2>
+        <div id="orders-container">
+          <div class="empty-state">Το καλάθι είναι άδειο</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ========== ΡΥΘΜΙΣΕΙΣ ==========
+    const OWNER_PASSWORD = "vortex2026";   // ← Άλλαξε αυτόν τον κωδικό!
+    // ==============================
+
+    function login() {
+      const pass = document.getElementById('password').value;
+      if (pass === OWNER_PASSWORD) {
+        sessionStorage.setItem('vortexOwner', 'true');
+        showPanel();
+      } else {
+        document.getElementById('error-msg').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('error-msg').style.display = 'none';
+        }, 2500);
+      }
+    }
+
+    // Enter key
+    document.getElementById('password').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') login();
+    });
+
+    function logout() {
+      sessionStorage.removeItem('vortexOwner');
+      document.getElementById('admin-panel').style.display = 'none';
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('password').value = '';
+    }
+
+    function showPanel() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-panel').style.display = 'block';
+      loadData();
+    }
+
+    // Auto login αν είναι ήδη logged in
+    if (sessionStorage.getItem('vortexOwner') === 'true') {
+      showPanel();
+    }
+
+    function loadData() {
+      // ===== Tickets =====
+      let tickets = [];
+      try {
+        tickets = JSON.parse(localStorage.getItem('vortexTickets') || '[]');
+      } catch (e) { tickets = []; }
+
+      document.getElementById('stat-tickets').textContent = tickets.length;
+
+      const ticketsContainer = document.getElementById('tickets-container');
+      if (tickets.length === 0) {
+        ticketsContainer.innerHTML = '<div class="empty-state">Δεν υπάρχουν tickets ακόμα</div>';
+      } else {
+        // Νεότερα πρώτα
+        tickets = tickets.reverse();
+        let html = '';
+        tickets.forEach(t => {
+          const date = new Date(t.date).toLocaleString('el-GR');
+          const badgeClass = 'badge-' + (t.category || 'other');
+          html += `
+            <div class="ticket">
+              <div class="ticket-header">
+                <div>
+                  <span class="ticket-id">${t.id}</span>
+                  <span class="badge ${badgeClass}" style="margin-left:8px;">${t.category || 'other'}</span>
+                </div>
+                <div class="ticket-meta">${date}</div>
+              </div>
+              <div class="ticket-meta" style="margin-bottom:6px;">
+                👤 ${t.name || '—'} &nbsp;|&nbsp; ✉️ ${t.email || '—'}
+              </div>
+              <div class="ticket-subject">${t.subject || 'Χωρίς θέμα'}</div>
+              <div class="ticket-message">${t.message || ''}</div>
+            </div>
+          `;
+        });
+        ticketsContainer.innerHTML = html;
+      }
+
+      // ===== Cart =====
+      let cart = [];
+      try {
+        cart = JSON.parse(localStorage.getItem('vortexCart') || '[]');
+      } catch (e) { cart = []; }
+
+      document.getElementById('stat-orders').textContent = cart.length;
+
+      const botsCount = cart.filter(i => i.type === 'bot').length;
+      const hostingCount = cart.filter(i => i.type === 'hosting').length;
+      document.getElementById('stat-bots').textContent = botsCount;
+      document.getElementById('stat-hosting').textContent = hostingCount;
+
+      const ordersContainer = document.getElementById('orders-container');
+      if (cart.length === 0) {
+        ordersContainer.innerHTML = '<div class="empty-state">Το καλάθι είναι άδειο</div>';
+      } else {
+        let total = 0;
+        let html = '';
+        cart.forEach(item => {
+          total += item.price || 0;
+          html += `
+            <div class="order-item">
+              <div>
+                <span style="font-size:1.3rem;margin-right:8px;">${item.icon || '📦'}</span>
+                <strong>${item.name}</strong>
+              </div>
+              <div style="color:var(--blurple);font-weight:600;">€${(item.price || 0).toFixed(2)}</div>
+            </div>
+          `;
+        });
+        html += `
+          <div style="margin-top:1.2rem;text-align:right;font-size:1.2rem;">
+            Σύνολο: <strong style="color:var(--blurple);">€${total.toFixed(2)}</strong>
+          </div>
+        `;
+        ordersContainer.innerHTML = html;
+      }
+    }
+
+    function clearTickets() {
+      if (confirm('Σίγουρα θέλεις να διαγράψεις ΟΛΑ τα tickets;')) {
+        localStorage.removeItem('vortexTickets');
+        loadData();
+        alert('Tickets διαγράφηκαν.');
+      }
+    }
+
+    function clearCart() {
+      if (confirm('Σίγουρα θέλεις να αδειάσεις το καλάθι;')) {
+        localStorage.removeItem('vortexCart');
+        loadData();
+        alert('Καλάθι άδειασε.');
+      }
+    }
+  </script>
+</body>
+</html>
